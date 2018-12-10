@@ -1071,32 +1071,57 @@ $(function () {
             }
 
         },
-
+        /**
+         * gets dictinary such that: key= OperatorID, value= all  
+         */
         linksByOPID: function () {
-            var links = this.getData().links;
-
-
-
-
-            var dict = [];
+            var links = this.getData().links; //gets all links
+            var dict = [];      // {'start': [1,2,3], '1': [], '2': ['END']}
             var ops = this.getData().operators;
-            var links1 = this.getData().links;
             for (op in ops) {
                 var temp = [];
                 var keys = Object.keys(links);
                 keys.forEach(function (key) {
-                    if (links[key].fromOperator == op){
+                    if (links[key].fromOperator == op) {
                         temp.push(links[key].toOperator);
                     }
                 });
-
                 dict.push({
                     key: op,
                     value: temp
                 });
             }
 
-            console.log(dict);
+            return dict;
+        },
+        printIVR: function () {
+            op_links_dict = this.linksByOPID();
+            this.printDict(op_links_dict, 'Start');
+
+        },
+        /**
+         * recursive function -  
+         * @param {*} dict - dictinary, key: OPERATORS, value: operators to gey to.
+         * @param {*} operatorID - operator to print
+         */
+        printDict: function (dict, operatorID) {
+            
+           var data = this.getOperatorCompleteData(operatorID);
+            console.log("2");
+            /*
+                        if (dict[operatorID] == []) {
+                console.log(operatorID);
+                return operatorID;
+            }
+            console.log(operatorID + "->");
+            var keys = Object.keys(links);
+            keys.forEach(function (key) {
+                if (links[key].fromOperator == op) {
+                    temp.push(links[key].toOperator);
+                }
+            });
+            */
+
         },
 
         getOperatorFullProperties: function (operatorData) {

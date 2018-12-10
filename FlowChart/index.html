@@ -147,8 +147,38 @@
     });
 
     $('#print_button').click(function () {
+      var dict = [];
+      dict.push({
+        key: 'oren',
+        value: ['cohen']
+      });
+      dict.push({
+        key: 'snir',
+        value: ['hazan', 'is', 'tzensor']
+      });
+      for (const key in dict) {
+        if (dict.hasOwnProperty(key)) {
+          const element = dict[key];
+          console.log("key:",element.key)
+          console.log("value:",element.value)
+          val = element.value;
 
-      $('#ivr').flowchart('linksByOPID');
+          for (const v in val) {
+            console.log("v", v);
+            console.log("val[v]", val[v]);
+          }
+          /*
+          var i = 0;
+          for (const t in element.value) {
+            console.log("value #" + i + "is:" + t);
+            i++;
+          } 
+          */         
+        }
+      }
+      /*
+      $('#ivr').flowchart('printIVR');
+      */
 
 
     });
