@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Botalks IVR Builder</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd"
+    crossorigin="anonymous">
+  <link href="jquery.flowchart.css" rel="stylesheet" type="text/css">
+  <style>
+    body {
+      background-color: #fafafa;
+    }
+
+    .container {
+      margin: 150px auto;
+    }
+
+    .demo {
+      height: 500px;
+      margin-bottom: 10px;
+    }
+  </style>
+  <h1>IVR Builder Example</h1>
+
+</head>
+
+
+<body>
+  <div class="demo" id="ivr"></div>
+  <button class="btn btn-primary" id="create_msg_1_2">Add MSG 1_2</button>
+  <button class="btn btn-primary" id="create_msg_1_1">Add MSG 1_1</button>
+  <button class="btn btn-primary" id="create_END">Add END</button>
+  <button class="btn btn-danger" id="delete_selected_button">Delete Selected Operator</button>
+  <button class="btn btn-success" id="print_button">print IVR</button>
+
+  </div>
+  <script src="http://code.jquery.com/jquery-1.12.2.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+  <script src="jquery.flowchart.js"></script>
+
+  <script>
+    $(document).ready(function () {
+
+      var data = {
+        operators: {
+          Start: {
+            top: 80,
+            left: 20,
+            properties: {
+              title: 'Start',
+              inputs: {},
+              outputs: {
+                output_1: {
+                  label: 'Hello MSG',
+                }
+              }
+            }
+          }
+        }
+      };
+
+      // Apply the plugin on a standard, empty div...
+      $('#ivr').flowchart({
+        data: data
+      });
+    });
+
+    $('#create_msg_1_2').click(function () {
+      var operatorI = $('#ivr').flowchart('getOperatorNum');
+      var operatorId = 'created_operator_' + operatorI;
+      var operatorData = {
+        top: 80,
+        left: 500,
+        properties: {
+          title: 'Messege ' + (operatorI),
+          inputs: {
+            input_1: {
+              label: 'MSG',
+            }
+          },
+          outputs: {
+            output_1: {
+              label: 'digit 1',
+            },
+            output_2: {
+              label: 'digit 2',
+            }
+          }
+        }
+      };
+
+
+      $('#ivr').flowchart('createOperator', operatorId, operatorData);
+    });
+
+    $('#create_msg_1_1').click(function () {
+      var operatorI = $('#ivr').flowchart('getOperatorNum');
+      var operatorId = 'created_operator_' + operatorI;
+      var operatorData = {
+        top: 80,
+        left: 500,
+        properties: {
+          title: 'Messege ' + (operatorI),
+          inputs: {
+            input_1: {
+              label: 'digit',
+            }
+          },
+          outputs: {
+            output_1: {
+              label: 'play msg',
+            }
+          }
+        }
+      };
+
+
+      $('#ivr').flowchart('createOperator', operatorId, operatorData);
+    });
+
+
+    $('#create_END').click(function () {
+      var operatorI = $('#ivr').flowchart('getEndNum');
+      var operatorId = 'created_end_' + operatorI;
+      var operatorData = {
+        top: 80,
+        left: 500,
+        properties: {
+          title: 'END',
+          inputs: {
+            input_1: {
+              label: 'End call',
+            }
+          },
+          outputs: {}
+        }
+      };
+
+
+      $('#ivr').flowchart('createOperator', operatorId, operatorData);
+    });
+
+    $('#delete_selected_button').click(function () {
+      $('#ivr').flowchart('deleteSelected');
+    });
+
+    $('#print_button').click(function () {
+    
+      $('#ivr').flowchart('printIVR');
+    });
+  </script>
+
+</body>
+
+</html>
