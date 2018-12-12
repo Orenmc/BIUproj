@@ -1,0 +1,392 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Botalks IVR Builder</title>
+    <meta name="description" content="Botalks">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="apple-icon.png">
+    <link rel="shortcut icon" href="images/logoBotalks2.png">
+
+    <link rel="stylesheet" href="vendors/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendors/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="vendors/themify-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="vendors/selectFX/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="vendors/jqvmap/dist/jqvmap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
+        integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+    <link href="assets/css/jquery.flowchart.css" rel="stylesheet" type="text/css">
+
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+    <style>
+        .demo {
+              background-color: bisque;
+              border-color: black;
+              height: 80%;
+              width: 100%;
+              margin-bottom: 10px;
+              position: absolute;
+        
+            }
+
+          </style>
+
+
+</head>
+
+<body>
+
+
+    <!-- Left Panel -->
+
+    <aside id="left-panel" class="left-panel">
+        <nav class="navbar navbar-expand-sm navbar-default">
+
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu"
+                    aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="./"><img src="images/logoBotalks.png" alt="Logo"></a>
+                <a class="navbar-brand hidden" href="./"><img src="images/logoBotalks2.png" alt="Logo"></a>
+            </div>
+
+            <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="index.html"> <i class="menu-icon fa ti-home"></i>Home Page </a>
+                    </li>
+
+
+                    <h3 class="menu-title">Menu</h3><!-- /.menu-title -->
+                    <li>
+                        <a href="offline-mode.html"> <i class="menu-icon fa fa-laptop"></i>Offline Mode </a>
+                    </li>
+                    <li>
+                        <a href="clusters.html"> <i class="menu-icon fa fa-th"></i>Clusters </a>
+                    </li>
+                    <li>
+                        <a href="ivr_builder.html"> <i class="menu-icon fa fa-headphones"></i>IVR Builder </a>
+                    </li>
+                    <li>
+                        <a href="index.html"> <i class="menu-icon fa fa-magic"></i>API Wizard </a>
+                    </li>
+                    <li>
+                        <a href="index.html"> <i class="menu-icon fa fa-clock-o"></i>Real Time </a>
+                    </li>
+                    <li>
+                        <a href="index.html"> <i class="menu-icon fa fa-bar-chart-o"></i>Historical Reports </a>
+                    </li>
+                    <li>
+                        <a href="index.html"> <i class="menu-icon fa fa-sitemap"></i>Enterprises </a>
+                    </li>
+        </nav>
+    </aside><!-- /#left-panel -->
+
+    <!-- Left Panel -->
+
+    <!-- Right Panel -->
+
+    <div id="right-panel" class="right-panel">
+
+        <!-- Header-->
+        <header id="header" class="header">
+
+            <div class="header-menu">
+
+                <div class="col-sm-7">
+                    <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
+                    <div class="header-left">
+                        <button class="search-trigger"><i class="fa fa-search"></i></button>
+                        <div class="form-inline">
+                            <form class="search-form">
+                                <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
+                                <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
+                            </form>
+                        </div>
+
+                        <div class="dropdown for-notification">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="notification"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-bell"></i>
+                                <span class="count bg-danger">5</span>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="notification">
+                                <p class="red">You have 3 Notification</p>
+                                <a class="dropdown-item media bg-flat-color-1" href="#">
+                                    <i class="fa fa-check"></i>
+                                    <p>Server #1 overloaded.</p>
+                                </a>
+                                <a class="dropdown-item media bg-flat-color-4" href="#">
+                                    <i class="fa fa-info"></i>
+                                    <p>Server #2 overloaded.</p>
+                                </a>
+                                <a class="dropdown-item media bg-flat-color-5" href="#">
+                                    <i class="fa fa-warning"></i>
+                                    <p>Server #3 overloaded.</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-5">
+                    <div class="user-area dropdown float-right">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
+                        </a>
+
+                        <div class="user-menu dropdown-menu">
+                            <a class="nav-link" href="#"><i class="fa fa-user"></i> My Profile</a>
+
+                            <a class="nav-link" href="#"><i class="fa fa-user"></i> Notifications <span class="count">13</span></a>
+
+                            <a class="nav-link" href="#"><i class="fa fa-cog"></i> Settings</a>
+
+                            <a class="nav-link" href="#"><i class="fa fa-power-off"></i> Logout</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </header><!-- /header -->
+        <!-- Header-->
+
+        <!-- Body -->
+        <div>
+            <h1>Botalks IVR Builder</h1>
+
+
+            <div class="container">
+
+                <div class="row">
+                    <div class="demo" id="ivr" style="border-style: solid; border-color:black;"></div>
+                </div>
+
+                <div class="row">
+                        <div class="btn-group" role="group" style="border-style: solid;
+                          border-color:black; padding: 2px">
+                            <button type="button" class="button btn btn-primary" id="create_msg_1_2">Add MSG 1_2</button>
+                            <button type="button" class="button btn btn-primary" id="create_msg_1_1">Add MSG 1_1</button>
+                            <button type="button" class="button btn btn-primary" id="create_END">Add END</button>
+                            <button type="button" class="button btn btn-danger" id="delete_selected_button">Delete Selected
+                                Operator</button>
+                            <button type="button" class="button btn btn-success" id="print_button">print IVR</button>
+                        </div>
+                        <div id="operator_properties" style="display: none;border-style: solid;
+                          border-color:black; padding: 10px; margin-top: 2px">
+                            <label for="operator_title">Operator's Title:</label>
+                            <input type="text" id="operator_title">
+                        </div>
+                        <div id="link_properties" style="display: none;border-style: solid;
+                          border-color:black; padding: 10px; margin-top: 2px">
+                            <label for="link_color">Link's Color:</label>
+                            <input type="color" id="link_color">
+                        </div>
+                    </div>
+            </div>
+
+
+            <script src="http://code.jquery.com/jquery-1.12.2.min.js"></script>
+            <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+            <script src="assets/js/jquery.flowchart.js"></script>
+
+            <script>
+                $(document).ready(function () {
+
+                    var data = {
+                        operators: {
+                            Start: {
+                                top: 10,
+                                left: 10,
+                                properties: {
+                                    title: 'Start',
+                                    inputs: {},
+                                    outputs: {
+                                        output_1: {
+                                            label: 'Hello MSG',
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    };
+
+                    var $operatorProperties = $('#operator_properties');
+                    var $linkProperties = $('#link_properties');
+                    var $operatorTitle = $('#operator_title');
+                    var $linkColor = $('#link_color');
+
+                    // Apply the plugin on a standard, empty div...
+                    $('#ivr').flowchart({
+                        data: data,
+                        onOperatorSelect: function (operatorId) {
+                            $("#operator_properties").css('display', 'block');
+                            $operatorTitle.val($('#ivr').flowchart('getOperatorTitle', operatorId));
+                            return true;
+                        },
+                        onOperatorUnselect: function () {
+                            $("#operator_properties").css('display', 'none');
+                            return true;
+                        },
+                        onLinkSelect: function (linkId) {
+                            $("#link_properties").css('display', 'block');
+                            $linkColor.val($('#ivr').flowchart('getLinkMainColor', linkId));
+                            return true;
+                        },
+                        onLinkUnselect: function () {
+                            $("#link_properties").css('display', 'none');
+                            return true;
+                        }
+                    });
+                    $operatorTitle.keyup(function () {
+                        var selectedOperatorId = $('#ivr').flowchart('getSelectedOperatorId');
+                        if (selectedOperatorId != null) {
+                            $('#ivr').flowchart('setOperatorTitle', selectedOperatorId, $operatorTitle.val());
+                        }
+                    });
+
+                    $linkColor.change(function () {
+                        var selectedLinkId = $('#ivr').flowchart('getSelectedLinkId');
+                        if (selectedLinkId != null) {
+                            $('#ivr').flowchart('setLinkMainColor', selectedLinkId, $linkColor.val());
+                        }
+                    });
+                });
+
+
+                $('#create_msg_1_2').click(function () {
+                    var operatorI = $('#ivr').flowchart('getOperatorNum');
+                    var operatorId = 'created_operator_' + operatorI;
+                    var operatorData = {
+                        top: 80,
+                        left: 500,
+                        properties: {
+                            title: 'Messege ' + (operatorI),
+                            inputs: {
+                                input_1: {
+                                    label: 'MSG',
+                                }
+                            },
+                            outputs: {
+                                output_1: {
+                                    label: 'digit 1',
+                                },
+                                output_2: {
+                                    label: 'digit 2',
+                                }
+                            }
+                        }
+                    };
+                    $('#ivr').flowchart('createOperator', operatorId, operatorData);
+                });
+
+                $('#create_msg_1_1').click(function () {
+                    var operatorI = $('#ivr').flowchart('getOperatorNum');
+                    var operatorId = 'created_operator_' + operatorI;
+                    var operatorData = {
+                        top: 80,
+                        left: 500,
+                        properties: {
+                            title: 'Messege ' + (operatorI),
+                            inputs: {
+                                input_1: {
+                                    label: 'digit',
+                                }
+                            },
+                            outputs: {
+                                output_1: {
+                                    label: 'play msg',
+                                }
+                            }
+                        }
+                    };
+                    $('#ivr').flowchart('createOperator', operatorId, operatorData);
+                });
+
+
+                $('#create_END').click(function () {
+                    var operatorI = $('#ivr').flowchart('getEndNum');
+                    var operatorId = 'created_end_' + operatorI;
+                    var operatorData = {
+                        top: 80,
+                        left: 500,
+                        properties: {
+                            title: 'END',
+                            inputs: {
+                                input_1: {
+                                    label: 'End call',
+                                }
+                            },
+                            outputs: {}
+                        }
+                    };
+                    $('#ivr').flowchart('createOperator', operatorId, operatorData);
+                });
+
+                $('#delete_selected_button').click(function () {
+                    $('#ivr').flowchart('deleteSelected');
+                });
+
+                $('#print_button').click(function () {
+
+                    $('#ivr').flowchart('printIVR');
+                });
+            </script>
+
+
+
+
+        </div>
+
+
+        <!-- /Body -->
+        <!-- /Right Panel -->
+
+        <script src="vendors/jquery/dist/jquery.min.js"></script>
+        <script src="vendors/popper.js/dist/umd/popper.min.js"></script>
+        <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="assets/js/main.js"></script>
+
+
+        <script src="vendors/chart.js/dist/Chart.bundle.min.js"></script>
+        <script src="assets/js/dashboard.js"></script>
+        <script src="assets/js/widgets.js"></script>
+        <script src="vendors/jqvmap/dist/jquery.vmap.min.js"></script>
+        <script src="vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+        <script src="vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+        <script>
+            (function ($) {
+                "use strict";
+
+                jQuery('#vmap').vectorMap({
+                    map: 'world_en',
+                    backgroundColor: null,
+                    color: '#ffffff',
+                    hoverOpacity: 0.7,
+                    selectedColor: '#1de9b6',
+                    enableZoom: true,
+                    showTooltip: true,
+                    values: sample_data,
+                    scaleColors: ['#1de9b6', '#03a9f5'],
+                    normalizeFunction: 'polynomial'
+                });
+            })(jQuery);
+        </script>
+
+</body>
+
+</html>
