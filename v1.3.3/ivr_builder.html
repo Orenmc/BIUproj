@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Botalks IVR Builder</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <link href="assets/css/jquery.flowchart.css" rel="stylesheet" type="text/css">
+  <style>
+    body,
+    html,
+    .container-fluid {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .demo {
+      background-color: bisque;
+      border-color: black;
+      border-style: solid;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+</head>
+
+
+<body>
+  <div class="container-fluid">
+    <div class="row" style="height: 20%;">
+      <div class="col-9">
+        <div class="btn-group-sx " role="toolbar" style="margin-left: 20px; width: 100%;">
+          <button type="button" class="button btn btn-primary" id="create_msg_1_2">Add MSG 1_2</button>
+          <button type="button" class="button btn btn-primary" id="create_msg_1_1">Add MSG 1_1</button>
+          <button type="button" class="button btn btn-primary" id="create_END">Add END</button>
+          <button type="button" class="button btn btn-danger" id="delete_selected_button">Delete Selected Operator</button>
+          <button type="button" class="button btn btn-success" id="print_button">print IVR</button>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="height: 60%;">
+      <div class="col-11">
+        <div class="demo" id="ivr"></div>
+      </div>
+    </div>
+    <div class="row" style="width: 40%;">
+      <div class="col-9">
+        <div id="operator_properties" style="display: none;border-style: solid;
+        border-color:black; padding: 10px; margin-top: 2px;">
+          <label for="operator_title">Operator's Title:</label>
+          <input type="text" id="operator_title">
+        </div>
+        <div id="link_properties" style="display: none;border-style: solid;
+        border-color:black; padding: 10px; margin-top: 2px">
+          <label for="link_color">Link's Color:</label>
+          <input type="color" id="link_color">
+        </div>
+      </div>
+    </div>
+    <script src="http://code.jquery.com/jquery-1.12.2.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="assets/js/jquery.flowchart.js"></script>
+
+    <script>
+      $(document).ready(function () {
+
+        var data = {
+          operators: {
+            Start: {
+              top: 10,
+              left: 10,
+              properties: {
+                title: 'Start',
+                inputs: {},
+                outputs: {
+                  output_1: {
+                    label: 'Hello MSG',
+                  }
+                }
+              }
+            }
+          }
+        };
+
+        var $operatorProperties = $('#operator_properties');
+        var $linkProperties = $('#link_properties');
+        var $operatorTitle = $('#operator_title');
+        var $linkColor = $('#link_color');
+
+        // Apply the plugin on a standard, empty div...
+        $('#ivr').flowchart({
+          data: data,
+          onOperatorSelect: function (operatorId) {
+            $("#operator_properties").css('display', 'block');
+            $operatorTitle.val($('#ivr').flowchart('getOperatorTitle', operatorId));
+            return true;
+          },
+          onOperatorUnselect: function () {
+            $("#operator_properties").css('display', 'none');
+            return true;
+          },
+          onLinkSelect: function (linkId) {
+            $("#link_properties").css('display', 'block');
+            $linkColor.val($('#ivr').flowchart('getLinkMainColor', linkId));
+            return true;
+          },
+          onLinkUnselect: function () {
+            $("#link_properties").css('display', 'none');
+            return true;
+          }
+        });
+        $operatorTitle.keyup(function () {
+          var selectedOperatorId = $('#ivr').flowchart('getSelectedOperatorId');
+          if (selectedOperatorId != null) {
+            $('#ivr').flowchart('setOperatorTitle', selectedOperatorId, $operatorTitle.val());
+          }
+        });
+
+        $linkColor.change(function () {
+          var selectedLinkId = $('#ivr').flowchart('getSelectedLinkId');
+          if (selectedLinkId != null) {
+            $('#ivr').flowchart('setLinkMainColor', selectedLinkId, $linkColor.val());
+          }
+        });
+      });
+
+
+      $('#create_msg_1_2').click(function () {
+        var operatorI = $('#ivr').flowchart('getOperatorNum');
+        var operatorId = 'created_operator_' + operatorI;
+        var operatorData = {
+          top: 80,
+          left: 500,
+          properties: {
+            title: 'Messege ' + (operatorI),
+            inputs: {
+              input_1: {
+                label: 'MSG',
+              }
+            },
+            outputs: {
+              output_1: {
+                label: 'digit 1',
+              },
+              output_2: {
+                label: 'digit 2',
+              }
+            }
+          }
+        };
+        $('#ivr').flowchart('createOperator', operatorId, operatorData);
+      });
+
+      $('#create_msg_1_1').click(function () {
+        var operatorI = $('#ivr').flowchart('getOperatorNum');
+        var operatorId = 'created_operator_' + operatorI;
+        var operatorData = {
+          top: 80,
+          left: 500,
+          properties: {
+            title: 'Messege ' + (operatorI),
+            inputs: {
+              input_1: {
+                label: 'digit',
+              }
+            },
+            outputs: {
+              output_1: {
+                label: 'play msg',
+              }
+            }
+          }
+        };
+        $('#ivr').flowchart('createOperator', operatorId, operatorData);
+      });
+
+
+      $('#create_END').click(function () {
+        var operatorI = $('#ivr').flowchart('getEndNum');
+        var operatorId = 'created_end_' + operatorI;
+        var operatorData = {
+          top: 80,
+          left: 500,
+          properties: {
+            title: 'END',
+            inputs: {
+              input_1: {
+                label: 'End call',
+              }
+            },
+            outputs: {}
+          }
+        };
+        $('#ivr').flowchart('createOperator', operatorId, operatorData);
+      });
+
+      $('#delete_selected_button').click(function () {
+        $('#ivr').flowchart('deleteSelected');
+      });
+
+      $('#print_button').click(function () {
+
+        $('#ivr').flowchart('printIVR');
+      });
+    </script>
+
+</body>
+
+</html>
