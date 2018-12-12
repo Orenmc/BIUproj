@@ -1096,6 +1096,7 @@ $(function () {
         },
         printIVR: function () {
             op_links_dict = this.linksByOPID();
+            var i = 0;
             this.printDict(op_links_dict, 'Start');
 
         },
@@ -1104,24 +1105,24 @@ $(function () {
          * @param {*} dict - dictinary, key: OPERATORS, value: operators to gey to.
          * @param {*} operatorID - operator to print
          */
-        printDict: function (dict, operatorID) {
-            
-           var data = this.getOperatorCompleteData(operatorID);
-            console.log("2");
-            /*
-                        if (dict[operatorID] == []) {
-                console.log(operatorID);
-                return operatorID;
+        printDict: function (dict, operatorID,i) {
+            var i = 0;
+            if(operatorID != 'Start'){
+                i = this.FindNumber(dict,operatorID);
             }
-            console.log(operatorID + "->");
-            var keys = Object.keys(links);
-            keys.forEach(function (key) {
-                if (links[key].fromOperator == op) {
-                    temp.push(links[key].toOperator);
-                }
-            });
-            */
+            console.log(operatorID + " --> ")
+            var element = dict[i];
+            val = element.value;
+            for (const v in val) {
+                this.printDict(dict,val[v]);
+            }
+        },
 
+        FindNumber: function (dict,operatorID) {
+            for(var v in dict){
+                if(dict[v].key == operatorID)
+                return v;
+            }
         },
 
         getOperatorFullProperties: function (operatorData) {
