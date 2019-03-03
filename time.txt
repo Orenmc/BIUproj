@@ -1,0 +1,18 @@
+
+
+understunding code, delete thing unrelevent, add options to edit, Drag and Drop, 
+
+
+
+
+
+
+
+
+
+3/3/19:
+
+7 hours:
+
+create data structure (tree) - with all elements/operators of the FlowChart, and try to print on console.
+

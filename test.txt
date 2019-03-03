@@ -1,0 +1,16 @@
+##### bla bla #######
+
+main:
+
+play: HelloWorld.wav return num
+
+if num==1:
+	go #getID
+elseif num == 2:
+	go # 
+
+$end main
+
+
+# getID:
+	play msg: getid.wav return num

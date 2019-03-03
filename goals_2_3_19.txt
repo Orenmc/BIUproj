@@ -1,0 +1,2 @@
+1. fix GUI - make the window bigger/scrollable
+2. print/save document
