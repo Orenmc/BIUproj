@@ -1,6 +1,16 @@
+11/12/18
+5 hours:
+find basic tool/package to start work with. found: https://github.com/sdrdis/jquery.flowchart
+try to understand this 2000+ lines of code.
 
 
-understunding code, delete thing unrelevent, add options to edit, Drag and Drop, 
+30/12
+
+* create Nodes (by buttons) and connect them.
+* a naive print (works only on 1 links per Node).
+* add more functions to flowchart.js that will serve as later ( print, create dictionaries, and more).
+* add options to edit
+* Drag and Drop, 
 
 
 
@@ -11,8 +21,13 @@ understunding code, delete thing unrelevent, add options to edit, Drag and Drop,
 
 
 3/3/19:
-
 7 hours:
 
 create data structure (tree) - with all elements/operators of the FlowChart, and try to print on console.
 
+7/3/19:
+6 hours:
+
+chaned the data structure! the tree was bad -> dictionary of operators!
+convert the DS to printable text.
+start the POP UP mission (for edting dynamclly the properties of Operators of flowChart) 
