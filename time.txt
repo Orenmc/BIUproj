@@ -1,33 +1,51 @@
-11/12/18
+14/11/18:
+3 hours:
+First apointmant with the project leaders and the other teams.
+
+21/11/18:
+7 hours:
+Recieve our part in the project - IVR Builder.
+Build the first milestones, and start build a basic implemention(html,css,bootstrap,js,Jquery)
+things like: drag&drop,data structure for the flow chart opeartors etc'.
+
+6/12/18:
+4 hours:
+Continue with basic implemention, seems like we will need another solution for our problem!
+-back to search for a better code.
+
+9/12/18:
 5 hours:
 find basic tool/package to start work with. found: https://github.com/sdrdis/jquery.flowchart
-try to understand this 2000+ lines of code.
+try to understand this 2000+ lines of code.(difficult)
+
+13/12/18:
+2 hours:
+meeting with our projects leaders about the drag and drop issue.
+still doesnt work, but we have achieved some progress with the flow chart.
 
 
-30/12
+27/12/18:
+5 hours:
+-fixing bugs! 
+- create Nodes (flowchart boxes) and connect them (with links).
+- naive print (works only on 1 links per Node) - need to improve it (prhheps should be saved on server)
 
-* create Nodes (by buttons) and connect them.
-* a naive print (works only on 1 links per Node).
-* add more functions to flowchart.js that will serve as later ( print, create dictionaries, and more).
-* add options to edit
-* Drag and Drop, 
+9/1/19:
+9 hours:
+- add more functions to flowchart.js that will serve as later ( print, create dictionaries, and more).
+- add options to edit
+- Drag and Drop (finally!!!) 
 
+#########
+exams! 
+#########
 
+27/2/19:
+4 hours:
+- create data structure (tree) - with all elements/operators of the FlowChart, and try to print on console.
 
-
-
-
-
-
-
-3/3/19:
-7 hours:
-
-create data structure (tree) - with all elements/operators of the FlowChart, and try to print on console.
-
-7/3/19:
-6 hours:
-
-chaned the data structure! the tree was bad -> dictionary of operators!
-convert the DS to printable text.
-start the POP UP mission (for edting dynamclly the properties of Operators of flowChart) 
+3/3/19 - 4/3/09:
+12 hours:
+- changed the data structure! the tree was bad -> dictionary of operators!
+- convert the DS to printable text.
+- start the POP UP mission (for edting dynamclly the properties of Operators of flowChart) 

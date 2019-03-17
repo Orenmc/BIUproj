@@ -1,5 +1,0 @@
-1. fix GUI - make the window bigger/scrollable
-2. print/save document					-DONE
-3. add edit options (prhaps make it dynamic!)
-4. make DS for Operators				-DONE
-5. Drag and drop					-DONE
