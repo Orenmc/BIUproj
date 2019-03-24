@@ -1,16 +1,30 @@
-##### bla bla #######
-
-main:
-
-play: HelloWorld.wav return num
-
-if num==1:
-	go #getID
-elseif num == 2:
-	go # 
-
-$end main
-
-
-# getID:
-	play msg: getid.wav return num
+####
+Operator name is: Start
+return_type: int
+if Hello MSG so do -> op1
+####
+####
+Operator name is: op5
+return_type: string
+if Output 1 so do -> GO HOME
+####
+####
+Operator name is: op2
+return_type: string
+if Output 1 so do -> GO HOME
+####
+####
+Operator name is: op3
+return_type: string
+if Output 1 so do -> GO HOME
+####
+####
+Operator name is: op1
+return_type: string
+if Output1 so do -> op2
+if Output2 so do -> op3
+if Output3 so do -> op5
+####
+####
+Operator name is: GO HOME
+####

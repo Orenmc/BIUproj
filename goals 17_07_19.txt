@@ -1,5 +1,5 @@
 1. fix GUI - make the window bigger/scrollable		-DONE
-2. print/save document				-DONE
+2. print/save document					-DONE
 3. add edit options (prhaps make it dynamic!)		-DONE
 4. make DS for Operators				-DONE
 5. Drag and drop					-DONE
@@ -7,3 +7,4 @@
 7. again - make GUI better (colors, size, scrollable)
 8. make a pop up, for edit NODE on the FlowChart.
 9. intgrate with SIP (Session Initiation Protocol) team.
+10. add more propreties fro Operators (return_type, msg. and more.) -DONE

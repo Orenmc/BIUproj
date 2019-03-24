@@ -48,4 +48,10 @@ exams!
 12 hours:
 - changed the data structure! the tree was bad -> dictionary of operators!
 - convert the DS to printable text.
-- start the POP UP mission (for edting dynamclly the properties of Operators of flowChart) 
+- start the POP UP mission (for edting dynamclly the properties of Operators of flowChart)
+
+24/03/19:
+6 hours:
+- add more properties to data in each Operator
+- make it editable
+- each properties can be blocked or not (visuoal block )
