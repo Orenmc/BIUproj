@@ -54,4 +54,13 @@ exams!
 6 hours:
 - add more properties to data in each Operator
 - make it editable
-- each properties can be blocked or not (visuoal block )
+- each properties can be blocked or not (visuoal block)
+
+28/03/19:
+6 hours:
+- make more Operators: Play, Logic, Oprator. and for each OP make unique properties (as required!)
+- create individual CSS for each of them
+- start build a platform for dependencies injection (shape/css/content at Run time for each Op)
+
+
+
