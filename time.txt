@@ -63,4 +63,15 @@ exams!
 - start build a platform for dependencies injection (shape/css/content at Run time for each Op)
 
 
+14/04/19:
+9 hours:
+- create beautiful pop-up
+- data binding (now works only from one side, Operator -> pop-up!)
+
+21/04/19:
+10 hours:
+- binding pop-up with operator.
+- make edit button for edit properties of op.
+- design updated - more collorfull.
+- API for output of chartflow (with Gal - team sip service)
 

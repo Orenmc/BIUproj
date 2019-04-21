@@ -1,0 +1,37 @@
+####
+Operator name is: Start
+Return_type: 
+if Hello MSG so do -> Play
+####
+####
+Operator name is: Play
+Return_type: string
+Say: "tts1"
+if Output 1 so do -> Logic
+####
+####
+Operator name is: Logic
+Return_type: int
+Say: "tts10"
+Play: wav10
+if Output 1 so do -> End
+if Output 2 so do -> End
+####
+####
+Operator name is: Play
+Return_type: string
+Play: wav
+if Output 1 so do -> End
+####
+####
+Operator name is: End
+Return_type: int
+####
+####
+Operator name is: End
+Return_type: int
+####
+####
+Operator name is: End
+Return_type: int
+####

@@ -1,0 +1,701 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Botalks IVR Builder</title>
+    <meta name="description" content="Botalks">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="apple-icon.png">
+    <link rel="shortcut icon" href="images/logoBotalks2.png">
+
+    <link rel="stylesheet" href="vendors/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendors/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="vendors/themify-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="vendors/selectFX/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="vendors/jqvmap/dist/jqvmap.min.css">
+
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+
+    <link href="assets/css/jquery.flowchart.css" rel="stylesheet" type="text/css">
+    <style>
+        body {
+            background-color: #fafafa;
+        }
+
+        .container {
+            margin: 150px auto;
+        }
+
+        .demo {
+            background-color: bisque;
+            border-color: black;
+            height: 100%;
+            width: 95%;
+            margin-left: 20px;
+            position: absolute;
+            overflow: initial;
+        }
+
+        .draggable_operator {
+            display: inline-block;
+            margin-left: 20px;
+            padding: 2px 5px 2px 5px;
+            border: 1px solid #ccc;
+            cursor: grab;
+            user-select: none;
+        }
+    </style>
+    <style>
+        label,
+        input {
+            display: block;
+        }
+
+        input.text {
+            margin-bottom: 12px;
+            width: 95%;
+            padding: .4em;
+        }
+
+        fieldset {
+            padding: 0;
+            border: 0;
+            margin-top: 25px;
+        }
+
+        h1 {
+            font-size: 1.2em;
+            margin: .6em 0;
+        }
+
+        div#users-contain {
+            width: 350px;
+            margin: 20px 0;
+        }
+
+        div#users-contain table {
+            margin: 1em 0;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        div#users-contain table td,
+        div#users-contain table th {
+            border: 1px solid #eee;
+            padding: .6em 10px;
+            text-align: left;
+        }
+
+        .ui-dialog .ui-state-error {
+            padding: .3em;
+        }
+
+        .validateTips {
+            border: 1px solid transparent;
+            padding: 0.3em;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <!-- Left Panel -->
+
+    <aside id="left-panel" class="left-panel">
+        <nav class="navbar navbar-expand-sm navbar-default">
+
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu"
+                    aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="./"><img src="images/logoBotalks.png" alt="Logo"></a>
+                <a class="navbar-brand hidden" href="./"><img src="images/logoBotalks2.png" alt="Logo"></a>
+            </div>
+
+            <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="index.html"> <i class="menu-icon fa ti-home"></i>Home Page </a>
+                    </li>
+
+
+                    <h3 class="menu-title">Menu</h3><!-- /.menu-title -->
+                    <li>
+                        <a href="offline-mode.html"> <i class="menu-icon fa fa-laptop"></i>Offline Mode </a>
+                    </li>
+                    <li>
+                        <a href="clusters.html"> <i class="menu-icon fa fa-th"></i>Clusters </a>
+                    </li>
+                    <li>
+                        <a href="ivr_builder.html"> <i class="menu-icon fa fa-headphones"></i>IVR Builder </a>
+                    </li>
+                    <li>
+                        <a href="index.html"> <i class="menu-icon fa fa-magic"></i>API Wizard </a>
+                    </li>
+                    <li>
+                        <a href="index.html"> <i class="menu-icon fa fa-clock-o"></i>Real Time </a>
+                    </li>
+                    <li>
+                        <a href="index.html"> <i class="menu-icon fa fa-bar-chart-o"></i>Historical Reports </a>
+                    </li>
+                    <li>
+                        <a href="index.html"> <i class="menu-icon fa fa-sitemap"></i>Enterprises </a>
+                    </li>
+        </nav>
+    </aside><!-- /#left-panel -->
+
+    <!-- Left Panel -->
+
+    <!-- Right Panel -->
+
+    <div id="right-panel" class="right-panel">
+
+        <!-- Header-->
+        <header id="header" class="header">
+
+            <div class="header-menu">
+
+                <div class="col-sm-7">
+                    <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
+                    <div class="header-left">
+                        <button class="search-trigger"><i class="fa fa-search"></i></button>
+                        <div class="form-inline">
+                            <form class="search-form">
+                                <input class="form-control mr-sm-2" type="text" placeholder="Search ..."
+                                    aria-label="Search">
+                                <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
+                            </form>
+                        </div>
+
+                        <div class="dropdown for-notification">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="notification"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-bell"></i>
+                                <span class="count bg-danger">5</span>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="notification">
+                                <p class="red">You have 3 Notification</p>
+                                <a class="dropdown-item media bg-flat-color-1" href="#">
+                                    <i class="fa fa-check"></i>
+                                    <p>Server #1 overloaded.</p>
+                                </a>
+                                <a class="dropdown-item media bg-flat-color-4" href="#">
+                                    <i class="fa fa-info"></i>
+                                    <p>Server #2 overloaded.</p>
+                                </a>
+                                <a class="dropdown-item media bg-flat-color-5" href="#">
+                                    <i class="fa fa-warning"></i>
+                                    <p>Server #3 overloaded.</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-5">
+                    <div class="user-area dropdown float-right">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
+                        </a>
+
+                        <div class="user-menu dropdown-menu">
+                            <a class="nav-link" href="#"><i class="fa fa-user"></i> My Profile</a>
+
+                            <a class="nav-link" href="#"><i class="fa fa-user"></i> Notifications <span
+                                    class="count">13</span></a>
+
+                            <a class="nav-link" href="#"><i class="fa fa-cog"></i> Settings</a>
+
+                            <a class="nav-link" href="#"><i class="fa fa-power-off"></i> Logout</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </header>
+
+        <body>
+            <div class="row" style="height:30px;margin-left: 0px; margin-bottom: 1%">
+                    <div class="draggable_operator shadowbox" data-nb-inputs="1" data-nb-outputs="2"
+                        data-class="flowchart-logic">Logic</div>
+                    <div class="draggable_operator shadowbox" data-nb-inputs="1" data-nb-outputs="1"
+                        data-class="flowchart-play">Play</div>
+                    <div class="draggable_operator shadowbox" data-nb-inputs="1" data-nb-outputs="0"
+                        data-class="flowchart-test-operator">End</div>
+
+            </div>
+            <div class="row" style="height:500px;width:105%">
+                <div class="col-10">
+                    <div class="demo" id="ivr">
+                        <img class="img-fluid" src="images/ivr_builder.jpg" style="height:100%; width: 100%">
+                    </div>
+                </div>
+                <div class="col-1.5">
+                    <div class="btn-group-vertical " style="width:100%">
+                        <button type="button" class="button btn btn-danger" id="delete_selected_button">Delete
+                            Operator</button>
+                        <button type="button" class="button btn btn-success" id="print_button">print IVR</button>
+                        <button type="button" class="button btn btn-success" id="get_data">Save data</button>
+                        <button type="button" class="button btn btn-success" id="set_data">Load data</button>
+                        <button type="button" class="button btn btn-success" id="clear">Clear</button>
+                        <button type="button" class="button btn btn-success" id="play">Play</button>
+                        <button type="button" class="button btn btn-success" id="create_obj">Create Obj</button>
+                        <button id="edit_button" type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#exampleModal" style="display: none">EDIT OP</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-left: 20px;width: 700px">
+                <div id="operator_properties" style="display: none;border-style: solid;
+                    border-color:black; padding: 10px; margin-top: 2px;">
+                    <label for="operator_title">Operator's Title:</label>
+                    <input type="text" id="operator_title">
+                    <div id="return_type_label" style="display: none">
+                        <label for="operator_return_type">Operator's Return Type:</label>
+                        <input type="text" id="operator_return_type" readonly>
+                    </div>
+
+                </div>
+                <div id="link_properties" style="display: none;border-style: solid;
+                    border-color:black; padding: 10px; margin-top: 2px">
+                    <label for="link_color">Link's Color:</label>
+                    <input type="color" id="link_color">
+                </div>
+            </div>
+            <div class="row" style="margin-left:20px;width: 700px; margin-top: 10px">
+                <textarea id="flowchart_data" style="position: relative;
+                 line-height: 22.5px; font-size: 15px;background: transparent
+                 !important;width:700px;height: 300px;display: none"></textarea>
+            </div>
+
+            <script src="http://code.jquery.com/jquery-1.12.2.min.js"></script>
+            <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+            <script src="assets/js/jquery.flowchart.js"></script>
+            <script src="assets/js/filer.js"></script>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab"
+                                        href="#General"><strong>General</strong></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#Logic"><strong>Logic</strong></a>
+                                </li>
+                            </ul>
+
+                            <h5 class="modal-title" id="exampleModalLabel"></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div class="tab-pane container active" id="General">
+                                        <div class="form-group">
+
+                                            <label for="wav-name" class="col-form-label">WAV:</label>
+                                            <input type="text" class="form-control" id="wav-name">
+                                            <label for="tts-name" class="col-form-label">TTS:</label>
+                                            <input type="text" class="form-control" id="tts-name">
+                                            <label for="title-name" class="col-form-label">Title:</label>
+                                            <input type="text" class="form-control" id="title-name">
+                                            <label for="return-name" class="col-form-label">return type:</label>
+                                            <input type="text" class="form-control" id="return-name">
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane container fade" id="Logic">
+                                        <div class="form-group">
+                                            <label for="inputs-name" class="col-form-label">Inputs:</label>
+                                            <input type="text" class="form-control" id="inputs-name">
+                                            <label for="outputs-name" class="col-form-label">Outputs:</label>
+                                            <input type="text" class="form-control" id="outputs-name">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button id="save_changes" type="button" class="btn btn-primary" data-dismiss="modal">save
+                                changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <script>
+                $(document).ready(function () {
+
+                    var data = {
+                        operators: {
+                            Start: {
+                                top: 10,
+                                left: 10,
+                                properties: {
+                                    title: 'Start',
+                                    inputs: {},
+                                    outputs: {
+                                        output_1: {
+                                            label: '1',
+                                        }
+                                    },
+                                    tts: '',
+                                    wav: '',
+                                    return_type: ''
+                                }
+                            }
+                        }
+                    };
+
+
+                    var $operatorProperties = $('#operator_properties');
+                    var $linkProperties = $('#link_properties');
+                    var $operatorTitle = $('#operator_title');
+                    var $linkColor = $('#link_color');
+                    var $operatorReturnType = $('#operator_return_type');
+                    var $wav = $('#wav-name');
+                    var $tts = $('#tts-name');
+
+                    var $draggableOperators = $('.draggable_operator');
+                    //this gets the dada from the D&D buttons
+                    function getOperatorData($element) {
+                        var nbInputs = parseInt($element.data('nb-inputs'));
+                        var nbOutputs = parseInt($element.data('nb-outputs'));
+                        var op_class = $element.data('class');
+                        var ret_type;
+
+                        if (op_class == 'flowchart-play' || op_class == 'snir') {
+                            ret_type = 'string';
+                        } else ret_type = 'int';
+                        var data = {
+                            id: $('#ivr').flowchart('getOperatorNum'),
+                            properties: {
+                                title: $element.text(),
+                                inputs: {},
+                                outputs: {},
+                                return_type: ret_type,
+                                class: op_class,
+                                tts: '',
+                                wav: ''
+                            }
+                        };
+
+                        var i = 0;
+                        for (i = 0; i < nbInputs; i++) {
+                            data.properties.inputs['input_' + i] = {
+                                label: 'Input ' + (i + 1)
+                            };
+                        }
+                        for (i = 0; i < nbOutputs; i++) {
+                            data.properties.outputs['output_' + i] = {
+                                label: 'Output ' + (i + 1)
+                            };
+                        }
+                        return data;
+                    }
+
+                    var operatorId = 0;
+
+                    $draggableOperators.draggable({
+                        cursor: "move",
+                        opacity: 0.7,
+
+                        helper: 'clone',
+                        appendTo: 'body',
+                        zIndex: 1000,
+
+                        helper: function (e) {
+                            var $this = $(this);
+                            var data = getOperatorData($this);
+                            return $('#ivr').flowchart('getOperatorElement', data);
+                        },
+                        stop: function (e, ui) {
+                            var $this = $(this);
+                            var elOffset = ui.offset;
+                            var containerOffset = $('#ivr').offset();
+                            if (elOffset.left > containerOffset.left &&
+                                elOffset.top > containerOffset.top &&
+                                elOffset.left < containerOffset.left + $('#ivr').width() &&
+                                elOffset.top < containerOffset.top + $('#ivr').height()) {
+
+                                var flowchartOffset = $('#ivr').offset();
+
+                                var relativeLeft = elOffset.left - flowchartOffset.left;
+                                var relativeTop = elOffset.top - flowchartOffset.top;
+
+                                var positionRatio = $('#ivr').flowchart('getPositionRatio');
+                                relativeLeft /= positionRatio;
+                                relativeTop /= positionRatio;
+
+                                var data = getOperatorData($this);
+                                data.left = relativeLeft;
+                                data.top = relativeTop;
+
+                                $('#ivr').flowchart('addOperator', data);
+                            }
+                        }
+                    });
+
+                    // Apply the plugin on a standard, empty div...
+                    $('#ivr').flowchart({
+                        data: data,
+                        //data: JSON.parse(localStorage.getItem("data")),
+                        //TODO: check what to do with local storage, check if empty maybe?
+                        onOperatorSelect: function (operatorId) {
+                            // display the edit button 
+                            $('#edit_button').css('display', 'block');
+                            localStorage.setItem("operatorID", operatorId)
+                            let prop = $('#ivr').flowchart('getOperatorProperties', operatorId);
+                            //init all data from modal
+                            in_size = Object.keys(prop.inputs).length
+                            out_size = Object.keys(prop.outputs).length
+                            $('#wav-name').val(prop.wav)
+                            $('#tts-name').val(prop.tts)
+                            $('#title-name').val(prop.title)
+                            $('#return-name').val(prop.return_type)
+                            $('#inputs-name').val(in_size)
+                            $('#outputs-name').val(out_size)
+
+                            return true;
+                        },
+                        onOperatorUnselect: function () {
+                            $('#edit_button').css('display', 'none');
+                            return true;
+                        },
+                        onLinkSelect: function (linkId) {
+                            $("#link_properties").css('display', 'block');
+                            $linkColor.val($('#ivr').flowchart('getLinkMainColor', linkId));
+                            return true;
+                        },
+                        onLinkUnselect: function () {
+                            $("#link_properties").css('display', 'none');
+                            return true;
+                        }
+                    });
+                    $operatorTitle.keyup(function () {
+                        var selectedOperatorId = $('#ivr').flowchart('getSelectedOperatorId');
+                        if (selectedOperatorId != null) {
+                            $('#ivr').flowchart('setOperatorTitle', selectedOperatorId, $operatorTitle.val());
+                        }
+                    });
+                    $('#wav-name').keyup(function() {
+                        if ($('#wav-name').val() != ''){
+                            $('#tts-name').attr('disabled', 'disabled');
+                        }
+                        else {
+                            $('#tts-name').removeAttr('disabled');
+                        }
+                    });
+                    $('#tts-name').keyup(function() {
+                        if ($('#tts-name').val() != ''){
+                            $('#wav-name').attr('disabled', 'disabled');
+                        }
+                        else {
+                            $('#wav-name').removeAttr('disabled');
+                        }
+                    });
+
+                    $linkColor.change(function () {
+                        var selectedLinkId = $('#ivr').flowchart('getSelectedLinkId');
+                        if (selectedLinkId != null) {
+                            $('#ivr').flowchart('setLinkMainColor', selectedLinkId, $linkColor.val());
+                        }
+                    });
+                });
+
+                $('#delete_selected_button').click(function () {
+                    $('#ivr').flowchart('deleteSelected');
+                });
+
+                $('#print_button').click(function () {
+
+                    $('#ivr').flowchart('printIVR');
+                });
+                // save data
+                $('#get_data').click(function () {
+                    var data = $('#ivr').flowchart('getData');
+                    var JsonData = JSON.stringify(data);
+                    localStorage.setItem("data", JsonData);
+                    download(JsonData, 'json.txt', 'text/plain');
+
+                });
+                // play wav 
+                $('#play').click(function () {
+                    var audio = new Audio("./audio/sentence.wav")
+                    audio.play();
+                });
+                // create_obj
+                $('#create_obj').click(function () {
+
+                    // get numbers from user
+                    var inputs_counter = getNumber("inputs");
+                    var outputs_counter = getNumber("outputs");
+                    var msg = getMSG();
+
+                    // create obj with inputs and outputs
+                    var operatorI = $('#ivr').flowchart('getOperatorNum');
+
+                    // input check
+                    if (!(inputs_counter <= 0 || outputs_counter <= 0)) {
+
+                        var data = {
+                            id: {},
+                            top: 80,
+                            left: 500,
+                            properties: {
+                                title: msg,
+                                inputs: {},
+                                outputs: {}
+                            }
+                        };
+                        // create all inputs
+                        for (let i = 1; i <= inputs_counter; i++) {
+                            data.properties.inputs['input' + i] = {
+                                label: 'Input' + i
+                            };
+
+                        }
+
+                        // create all outputs
+                        for (let i = 1; i <= outputs_counter; i++) {
+                            data.properties.outputs['output' + i] = {
+                                label: 'Output' + i
+                            };
+                        }
+                        $('#ivr').flowchart('addOperator', data);
+                        //$('#ivr').flowchart('createOperator', operatorId, data);
+                    }
+
+                });
+
+                $('#set_data').click(function () {
+                    // $("#flowchart_data").css('display', 'none');
+                    var data = JSON.parse(localStorage.getItem("data"));
+                    $('#ivr').flowchart('setData', data);
+                });
+
+                $('#save_changes').click(function () {
+                    //need to use this for popup initilized
+                    let opId = localStorage.getItem("operatorID")
+                    let dict = {
+                        title: $('#title-name').val(),
+                        wav: $('#wav-name').val(), return_type: $('#return-name').val(), tts: $('#tts-name').val()
+                    }
+
+                    $('#ivr').flowchart('setOperatorChanges', opId, dict)
+
+                })
+
+                $('#clear').click(function () {
+                    var txt;
+                    var r = confirm("Save Your State!\n Are You Sure?");
+                    if (r == true) {
+                        var data = {
+                            operators: {
+                                Start: {
+                                    id: 'Start',
+                                    top: 10,
+                                    left: 10,
+                                    properties: {
+                                        title: 'Start',
+                                        inputs: {},
+                                        outputs: {
+                                            output_1: {
+                                                label: 'Hello MSG',
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        $('#ivr').flowchart('setData', data);
+                    } else {
+                        txt = "You pressed Cancel!";
+                    }
+                });
+                function download(content, fileName, contentType) {
+                    var a = document.createElement("a");
+                    var file = new Blob([content], { type: contentType });
+                    a.href = URL.createObjectURL(file);
+                    a.download = fileName;
+                    a.click();
+                }
+                function getNumber(out_string) {
+                    var txt;
+                    var num = prompt("Please enter " + out_string + ":", "");
+                    if (num == null || num == "") {
+                        txt = "0";
+                    } else {
+                        txt = num
+                    }
+                    return parseInt(txt);
+                }
+                function getMSG() {
+                    var txt = prompt("Please enter title:", "");
+                    return txt;
+                }
+            </script>
+        </body>
+
+        <script src="vendors/jquery/dist/jquery.min.js"></script>
+        <script src="vendors/popper.js/dist/umd/popper.min.js"></script>
+        <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="assets/js/main.js"></script>
+
+
+        <script src="vendors/chart.js/dist/Chart.bundle.min.js"></script>
+        <script src="assets/js/dashboard.js"></script>
+        <script src="assets/js/widgets.js"></script>
+        <script src="vendors/jqvmap/dist/jquery.vmap.min.js"></script>
+        <script src="vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+        <script src="vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+        <script>
+            (function ($) {
+                "use strict";
+                jQuery('#vmap').vectorMap({
+                    map: 'world_en',
+                    backgroundColor: null,
+                    color: '#ffffff',
+                    hoverOpacity: 0.7,
+                    selectedColor: '#1de9b6',
+                    enableZoom: true,
+                    showTooltip: true,
+                    values: sample_data,
+                    scaleColors: ['#1de9b6', '#03a9f5'],
+                    normalizeFunction: 'polynomial'
+                });
+            })(jQuery);
+        </script>
+
+</body>
+
+</html>
