@@ -75,3 +75,6 @@ exams!
 - design updated - more collorfull.
 - API for output of chartflow (with Gal - team sip service)
 
+22/04/19:
+1 hours:
+- fixing bug, used ti save the last commend on display WAV or TTS, now when operator clicked check what to display 
