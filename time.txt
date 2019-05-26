@@ -77,4 +77,22 @@ exams!
 
 22/04/19:
 1 hours:
-- fixing bug, used ti save the last commend on display WAV or TTS, now when operator clicked check what to display 
+- fixing bug, used ti save the last commend on display WAV or TTS, now when operator clicked check what to display
+
+07/05/19:
+5 hours:
+- backend, build service in the server for saveing the client data (flowchart)\
+
+19/05/19:
+4 hours:
+- backend , send GET request to service with some data.
+
+23/05/19:
+5 hours:
+- dynamclly change inputs/outouts in logic Operator
+- save lables of unchanged inputs/outputs
+- start fixing problem: delete unneeded links (those who removed from the logic operator)
+
+26/05/19
+5 hours:
+- when editing logic OP, if needed to remove some inputs/outputs delete only those who needed to remove!

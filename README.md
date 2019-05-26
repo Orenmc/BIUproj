@@ -2,7 +2,7 @@ IVR Builder
 ================
 
 Javascript jQuery plugin that allows you to draw a flow chart.
-and use it to create IVR Builder.
+Use it to create IVR Builder.
 
 Description
 -----------
