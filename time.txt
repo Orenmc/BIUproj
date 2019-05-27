@@ -96,3 +96,13 @@ exams!
 26/05/19
 5 hours:
 - when editing logic OP, if needed to remove some inputs/outputs delete only those who needed to remove!
+
+27/05/19
+10 hours:
+- Talking with Backend developer of the compnay for solving the "saving on server" issue.
+- Finally success to save the flow chart on the compnay server for the SIP team.
+- Some design changes - put the group button beneath the flow chart area,
+			create tabs on the "LOGIC" pop up modal,
+			remove useless part of the UI.
+			
+

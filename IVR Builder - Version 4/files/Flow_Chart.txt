@@ -1,0 +1,48 @@
+####
+Operator name is: Start
+Return_type: Start
+if 1 so do -> 0
+####
+####
+Operator name is: op0
+Class: logic
+Return_type: int
+if Output 1 do -> op2
+if Output 2 do -> op1
+if *Output 3 do -> op4
+####
+####
+Operator name is: op1
+Class: route
+Route_to: 
+####
+####
+Operator name is: op2
+Class: disconnect
+####
+####
+Operator name is: op4
+Class: play
+if Output 1 do -> op5
+####
+####
+Operator name is: op5
+Class: logic
+Return_type: int
+if Output 1 do -> op6
+if Output 2 do -> op7
+####
+####
+Operator name is: op6
+Class: disconnect
+####
+####
+Operator name is: op7
+Class: play
+if Output 1 do -> op8
+####
+####
+Operator name is: op8
+Class: route
+Route_to: +972524370034
+####
