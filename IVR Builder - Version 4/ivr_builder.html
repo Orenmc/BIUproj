@@ -42,11 +42,9 @@
         .demo {
             background-color: bisque;
             border-color: black;
-            height: 80%;
-            width: 80%;
+            width: 82%;
             margin-left: 20px;
-            position: absolute;
-            overflow: auto;
+            position: sticky;
         }
 
         .draggable_operator {
@@ -236,8 +234,8 @@
 
             </div>
             <div class="row" style="height:30px;margin-left: 0px; margin-bottom: 1%">
-                <div class="draggable_operator shadowbox" data-nb-inputs="1" data-nb-outputs="2"
-                    data-class="flowchart-logic">Logic</div>
+                <div class="draggable_operator shadowbox snir" data-nb-inputs="1" data-nb-outputs="2"
+                data-class="flowchart-logic">Logic</div>
                 <div class="draggable_operator shadowbox" data-nb-inputs="1" data-nb-outputs="1"
                     data-class="flowchart-play">Play</div>
                 <div class="draggable_operator shadowbox" data-nb-inputs="1" data-nb-outputs="0"
@@ -245,20 +243,19 @@
                 <div class="draggable_operator shadowbox" data-nb-inputs="1" data-nb-outputs="0" style="width: 89px"
                     data-class="flowchart-disconnect">Disconnect</div>
             </div>
-            <div class="row" style="height:570px;margin-left: 0px; margin-bottom: 1%">
-                    <div class="demo" id="ivr" style="resize:horizontal;">
-                        <img class="img-thumbnail" src="images/ivr_builder.jpg" style="height:100%; width: 100%; display: block">
+            <div class="row" style="margin-left: 0px; margin-bottom: 1%">
+                    <div class="demo" id="ivr">
+                        <img class="img-fluid" src="images/ivr_builder.jpg" style="width:100%;height: auto;">
                     </div>
                 </div>
             <div class="row" style="height:30px;margin-left: 15px; margin-bottom: 1%">
-                        <button type="button" class="button social-button" id="delete_selected_button">Delete
+                        <button type="button" class="button social-button animationDanger" id="delete_selected_button">Delete
                             Operator</button>
-                        <button type="button" class="button social-button" id="print_button">Save To Server</button>
-                        <button type="button" class="button social-button" id="get_data">Save data</button>
-                        <button type="button" class="button social-button" id="set_data">Load data</button>
-                        <button type="button" class="button social-button" id="clear">Clear</button>
-                        <button type="button" class="button social-button" id="play">Play</button>
-                        <button type="button" class="button social-button" id="create_obj">Create Obj</button>
+                        <button type="button" class="button social-button animation" id="print_button">Save To Server</button>
+                        <button type="button" class="button social-button animation" id="get_data">Save data</button>
+                        <button type="button" class="button social-button animation" id="set_data">Load data</button>
+                        <button type="button" class="button social-button animation" id="clear">Clear</button>
+                        <button type="button" class="button social-button animation" id="create_obj">Create Obj</button>
                         <button id="edit_button" type="button" class="button social-button" data-toggle="modal"
                             style="display: none;color: red">Edit Operator</button>
             </div>

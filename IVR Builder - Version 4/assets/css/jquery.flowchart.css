@@ -191,3 +191,11 @@
     display: table-cell;
     width: 20%;
 }
+.animation:hover {
+    background-color: #3e8e41;
+    color: white;
+}
+.animationDanger:hover {
+    background-color: red;
+    color: white;
+}
