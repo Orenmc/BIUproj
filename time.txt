@@ -104,5 +104,39 @@ exams!
 - Some design changes - put the group button beneath the flow chart area,
 			create tabs on the "LOGIC" pop up modal,
 			remove useless part of the UI.
-			
 
+30/05/19
+7 hours:
+- Fixed some problems with the logic modal, add tabs, remove unusful margins.
+- Begin to work on changing dynamiclly the output number of the logic operator.
+
+01/06/19:
+3 hours:
+- Finish the new feature - "Changing dynamiclly the number of the outputs in the logic operator"!
+
+03/06/19:
+3 hours:
+- Fixed some design issues - color of play operator, remove input label,add headers to the operators modal and etc'.
+
+07/06/19:
+3 hours:
+- Meeting with SIP server Team to agree on API that will Used both of us.
+
+08/06/19:
+8 hours:
+- Create new opertor - Cluster operator. make it editable.
+- Read clusters details from the server using "Get" HTTP request, and store it for later(print the flow chart).
+
+10/06/19:
+8 hours:
+- Create new operator - Get Input - request from SIP Server team.
+- again,Make it editable.
+- Change the flow chart print, request from SIP server, in porpuse ro make it more convinent to the SIP system.
+
+11/06/19:
+10 hours:
+- Adding nice features:User can save more than one flow chart in the server, user can delete flow chart he dont want to use any more from the server,user can load flow chart data from the server.
+
+12/06/09:
+5 hours:
+- some input validations, more design fixing.
