@@ -9,7 +9,7 @@ Build the first milestones, and start build a basic implemention(html,css,bootst
 things like: drag&drop,data structure for the flow chart opeartors etc'.
 
 6/12/18:
-4 hours:
+7 hours:
 Continue with basic implemention, seems like we will need another solution for our problem!
 -back to search for a better code.
 
@@ -19,7 +19,7 @@ find basic tool/package to start work with. found: https://github.com/sdrdis/jqu
 try to understand this 2000+ lines of code.(difficult)
 
 13/12/18:
-2 hours:
+5 hours:
 meeting with our projects leaders about the drag and drop issue.
 still doesnt work, but we have achieved some progress with the flow chart.
 
@@ -28,7 +28,7 @@ still doesnt work, but we have achieved some progress with the flow chart.
 5 hours:
 -fixing bugs! 
 - create Nodes (flowchart boxes) and connect them (with links).
-- naive print (works only on 1 links per Node) - need to improve it (prhheps should be saved on server)
+- naive print (works only on 1 links per Node) - need to improve it (parheps should be saved on server)
 
 9/1/19:
 9 hours:
@@ -41,7 +41,7 @@ exams!
 #########
 
 27/2/19:
-4 hours:
+6 hours:
 - create data structure (tree) - with all elements/operators of the FlowChart, and try to print on console.
 
 3/3/19 - 4/3/09:
@@ -76,15 +76,15 @@ exams!
 - API for output of chartflow (with Gal - team sip service)
 
 22/04/19:
-1 hours:
+4 hours:
 - fixing bug, used ti save the last commend on display WAV or TTS, now when operator clicked check what to display
 
 07/05/19:
-5 hours:
+6 hours:
 - backend, build service in the server for saveing the client data (flowchart)\
 
 19/05/19:
-4 hours:
+6 hours:
 - backend , send GET request to service with some data.
 
 23/05/19:
@@ -111,11 +111,11 @@ exams!
 - Begin to work on changing dynamiclly the output number of the logic operator.
 
 01/06/19:
-3 hours:
+6 hours:
 - Finish the new feature - "Changing dynamiclly the number of the outputs in the logic operator"!
 
 03/06/19:
-3 hours:
+5 hours:
 - Fixed some design issues - color of play operator, remove input label,add headers to the operators modal and etc'.
 
 07/06/19:
@@ -140,3 +140,11 @@ exams!
 12/06/09:
 5 hours:
 - some input validations, more design fixing.
+
+13/06/09:
+7 hours:
+- Adding more feature - such as: 
+      * user can save files with the same name(almost the same - adding (i) if exists already)
+      * user can clear the board by one click
+      * user can delete operators anf links by 'delete' keyboard button.
+		       
