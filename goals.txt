@@ -1,0 +1,11 @@
+1. fix GUI - make the window bigger/scrollable			-DONE
+2. print/save document						-DONE
+3. add edit options (prhaps make it dynamic!)			-DONE
+4. make DS for Operators					-DONE
+5. Drag and drop						-DONE
+6. save flowchart on server.					-DONE
+7. again - make GUI better (colors, size, scrollable)		-DONE
+8. make a pop up, for edit Operator on the FlowChart.		-DONE
+9. intgrate with SIP (Session Initiation Protocol) team.	-DONE
+10. add more propreties fro Operators (return_type, msg. and more.) -DONE
+11. use the button of save change from pop up to operator - notice to update input/output (not as int - dict)	-DONE
