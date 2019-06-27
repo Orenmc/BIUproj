@@ -1472,13 +1472,6 @@ $(function () {
             }
         },
 
-        FindNumber: function (dict, operatorID) {
-            for (var v in dict) {
-                if (dict[v].key == operatorID)
-                    return v;
-            }
-        },
-
         getOperatorFullProperties: function (operatorData) {
             if (typeof operatorData.type != 'undefined') {
                 var typeProperties = this.data.operatorTypes[operatorData.type];
@@ -1490,14 +1483,6 @@ $(function () {
             } else {
                 return operatorData.properties;
             }
-        },
-
-        getOperatorReturnType: function (operatorId) {
-            let y = this.data.operators[operatorId].internal.properties.return_type;
-            if (y == undefined) {
-                return "NULL";
-            }
-            return y;
         },
 
         _refreshInternalProperties: function (operatorData) {
