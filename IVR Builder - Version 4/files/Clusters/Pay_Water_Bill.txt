@@ -1,0 +1,3 @@
+What is your name?,String,UserName
+How much is your debt water?,Integer,UserDebt
+What is your credit card number?,String,CreditCard

@@ -23,6 +23,24 @@
     <link rel="stylesheet" href="vendors/selectFX/css/cs-skin-elastic.css">
     <link rel="stylesheet" href="vendors/jqvmap/dist/jqvmap.min.css">
 
+    <script src="vendors/jquery/dist/jquery.min.js"></script>
+    <script src="vendors/popper.js/dist/umd/popper.min.js"></script>
+    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <script src="http://code.jquery.com/jquery-1.12.2.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="assets/js/jquery.flowchart.js"></script>
+    <script src="assets/js/Question.js"></script>
+    <script src="assets/js/filer.js"></script>
+
+    <script src="vendors/chart.js/dist/Chart.bundle.min.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+    <script src="assets/js/widgets.js"></script>
+    <script src="vendors/jqvmap/dist/jquery.vmap.min.js"></script>
+    <script src="vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <script src="vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+
 
     <link rel="stylesheet" href="assets/css/style.css">
 
@@ -142,178 +160,327 @@
 
     </header><!-- /header -->
     <!-- Header-->
-<div class="animated fadeIn">
-    <div class="card-body">
-        <div class="default-tab">
-            <nav>
-              <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                  <a class="nav-link active" id="home-tab" data-toggle="tab"
-                      href="#home" role="tab" aria-controls="home" aria-selected="true">Cluster #1</a>
-                  <a class="nav-link" id="profile-tab" data-toggle="tab"
-                      href="#profile" role="tab" aria-controls="profile" aria-selected="false">Cluster #2</a>
-              </div>
-            </nav>
-            <div class="tab-content pl-3 pt-2" id="nav-1">
-                <div class="tab-pane fade show active" id="nav-1" role="tabpanel" aria-labelledby="nav-1-tab">
-                  <h3 class="Cluster Title" align="center">חשבון מים</h3>
-                  <div class="card-body">
-                      <table class="table table-striped">
-                          <thead>
-                              <tr>
-                                  <th scope="col"> <i class="menu-icon fa fa-check-square-o"></i></th>
-                                  <th scope="col">Frequency Rank</th>
-                                  <th scope="col">Question</th>
-                                  <th scope="col">Number of Appearances</th>
-                                  <th scope="col">Type</th>
-                                  <th scope="col">Variable Name</th>
-                              </tr>
-                          </thead>
-                          <tbody>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Change Address</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Pay Water Bill</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Pay Police Ticket</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="card-body">
+                    <h3 class="Cluster Title">Change Address</h3>
+                    <table class="table table-striped">
+                        <thead>
                             <tr>
-                                <th scope="col"> <div class="form-check">
-                                    <div class="checkbox">
-                                        <label for="checkbox1" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox1" name="checkbox1" value="option1" class="form-check-input">
-                                          </label>
-                                    </div>
-                                  </div>
-                                </th>
-                                <th scope="row">1</th>
-                                <td>מה המספר משלם</td>
-                                <td>1500</td>
-                                <td>Integer (10)</td>
-                                <td>costumerNumber</td>
+                                <th scope="col"> <i class="menu-icon fa fa-check-square-o"></i></th>
+                                <th scope="col">Frequency Rank</th>
+                                <th scope="col">Question</th>
+                                <th scope="col">Number of Appearances</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Variable Name</th>
                             </tr>
-                              <tr>
-                                <th scope="col"> <div class="form-check">
-                                    <div class="checkbox">
-                                        <label for="checkbox2" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox2" name="checkbox2" value="option2" class="form-check-input">
-                                          </label>
-                                    </div>
+                        </thead>
+                        <tbody>
+                          <tr>
+                              <th scope="col"> <div class="form-check">
+                                  <div class="checkbox">
+                                      <label for="checkbox1" class="form-check-label ">
+                                          <input type="checkbox" id="checkbox1" name="checkbox1" value="option1" class="form-check-input check">
+                                        </label>
                                   </div>
-                                </th>
-                                  <th scope="row">2</th>
-                                  <td>מה המספר כרטיס אשראי</td>
-                                  <td>1400</td>
-                                  <td>CreditCard(16)</td>
-                                  <td>CreditCardNumber</td>
-                              </tr>
-                              <tr>
-                                <th scope="col"> <div class="form-check">
-                                    <div class="checkbox">
-                                        <label for="checkbox3" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">
-                                          </label>
-                                    </div>
+                                </div>
+                              </th>
+                              <th scope="row">1</th>
+                              <td>What is Your Full Name?</td>
+                              <td>1500</td>
+                              <td>String</td>
+                              <td>UserName</td>
+                          </tr>
+                            <tr>
+                              <th scope="col"> <div class="form-check">
+                                  <div class="checkbox">
+                                      <label for="checkbox2" class="form-check-label ">
+                                          <input type="checkbox" id="checkbox2" name="checkbox2" value="option2" class="form-check-input check">
+                                        </label>
                                   </div>
-                                </th>
-                                  <th scope="row">3</th>
-                                  <td>מה שלומך</td>
-                                  <td>1350</td>
-                                  <td></td>
-                                  <td></td>
-                              </tr>
-                              <tr>
-                                <th scope="col"> <div class="form-check">
-                                    <div class="checkbox">
-                                        <label for="checkbox4" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox4" name="checkbox4" value="option4" class="form-check-input">
-                                          </label>
-                                    </div>
+                                </div>
+                              </th>
+                                <th scope="row">2</th>
+                                <td>What Is Your ID Number?</td>
+                                <td>1400</td>
+                                <td>Integer(9)</td>
+                                <td>UserID</td>
+                            </tr>
+                            <tr>
+                              <th scope="col"> <div class="form-check">
+                                  <div class="checkbox">
+                                      <label for="checkbox4" class="form-check-label ">
+                                          <input type="checkbox" id="checkbox4" name="checkbox4" value="option4" class="form-check-input check">
+                                        </label>
                                   </div>
-                                </th>
-                                  <th scope="row">4</th>
-                                  <td>שלוש ספרות בגב הכרטיס</td>
-                                  <td>1300</td>
-                                  <td>Integer(3)</td>
-                                  <td>CVV</td>
-                              </tr>
-                              <tr>
-                                <th scope="col"> <div class="form-check">
-                                    <div class="checkbox">
-                                        <label for="checkbox5" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox5" name="checkbox5" value="option1" class="form-check-input">
-                                          </label>
-                                    </div>
+                                </div>
+                              </th>
+                                <th scope="row">3</th>
+                                <td>What Is Your Old Address?</td>
+                                <td>1300</td>
+                                <td>String</td>
+                                <td>OldAddress</td>
+                            </tr>
+                            <tr>
+                              <th scope="col"> <div class="form-check">
+                                  <div class="checkbox">
+                                      <label for="checkbox5" class="form-check-label ">
+                                          <input type="checkbox" id="checkbox5" name="checkbox5" value="option1" class="form-check-input check">
+                                        </label>
                                   </div>
-                                </th>
-                                  <th scope="row">5</th>
-                                  <td>תעודת זהות של בעל הכרטיס</td>
-                                  <td>1200</td>
-                                  <td>IDNumber(9)</td>
-                                  <td>idNumber</td>
-                              </tr>
-                          </tbody>
-                      </table>
-                      </div>
-                  </div>
+                                </div>
+                              </th>
+                                <th scope="row">4</th>
+                                <td> What Is Your New Address?</td>
+                                <td>1200</td>
+                                <td>String</td>
+                                <td>NewAddress</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="checkall btn btn-primary">Select/Deselect</button>
                 </div>
-                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                  <h3 class="Cluster Title" align="center">החלפת משלמים</h3>
-                  <div class="card-body">
-                      <table class="table table-striped">
-                          <thead>
-                              <tr>
-                                  <th scope="col"> <i class="menu-icon fa fa-check-square-o"></i></th>
-                                  <th scope="col">Frequency Rank</th>
-                                  <th scope="col">Question</th>
-                                  <th scope="col">Number of Appearances</th>
-                                  <th scope="col">Type</th>
-                                  <th scope="col">Variable Name</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                              <tr>
-                                <th scope="col"> <div class="form-check">
-                                    <div class="checkbox">
-                                        <label for="checkbox1" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox1" name="checkbox1" value="option1" class="form-check-input">
-                                          </label>
-                                    </div>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="card-body">
+                    <h3 class="Cluster Title">Pay Water Bill</h3>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col"> <i class="menu-icon fa fa-check-square-o"></i></th>
+                                <th scope="col">Frequency Rank</th>
+                                <th scope="col">Question</th>
+                                <th scope="col">Number of Appearances</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Variable Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                              <th scope="col"> <div class="form-check">
+                                  <div class="checkbox">
+                                      <label for="checkbox1" class="form-check-label ">
+                                          <input type="checkbox" id="checkbox1" name="checkbox1" value="option1" class="form-check-input check2">
+                                        </label>
                                   </div>
-                                </th>
-                                  <th scope="row">1</th>
-                                  <td>מה הכתובת הישנה</td>
-                                  <td>1000</td>
-                                  <td>Adress</td>
-                                  <td>aaaa</td>
-                              </tr>
-                              <tr>
-                                <th scope="col"> <div class="form-check">
-                                    <div class="checkbox">
-                                        <label for="checkbox2" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox2" name="checkbox2" value="option2" class="form-check-input">
-                                          </label>
-                                    </div>
+                                </div>
+                              </th>
+                              <th scope="row">1</th>
+                              <td>What Is Your Full Name?</td>
+                              <td>1500</td>
+                              <td>String</td>
+                              <td>UserName</td>
+                          </tr>
+                            <tr>
+                              <th scope="col"> <div class="form-check">
+                                  <div class="checkbox">
+                                      <label for="checkbox2" class="form-check-label ">
+                                          <input type="checkbox" id="checkbox2" name="checkbox2" value="option2" class="form-check-input check2">
+                                        </label>
                                   </div>
-                                </th>
-                                  <th scope="row">2</th>
-                                  <td>ומה הכתובת החדשה</td>
-                                  <td>800</td>
-                                  <td>Adress</td>
-                                  <td>bbbb</td>
-                              </tr>
-                          </tbody>
-                      </table>
+                                </div>
+                              </th>
+                                <th scope="row">2</th>
+                                <td>How Much Is Your Debt?</td>
+                                <td>1400</td>
+                                <td>Integer</td>
+                                <td>UserDebt</td>
+                            </tr>
+                            <tr>
+                              <th scope="col"> <div class="form-check">
+                                  <div class="checkbox">
+                                      <label for="checkbox3" class="form-check-label ">
+                                          <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input check2">
+                                        </label>
+                                  </div>
+                                </div>
+                              </th>
+                                <th scope="row">3</th>
+                                <td>What Is Your Credit Card Number?</td>
+                                <td>1350</td>
+                                <td>Integer(16)</td>
+                                <td>CreditCard</td>
+                            </tr>
+                            <tr>
+                              <th scope="col"> <div class="form-check">
+                                  <div class="checkbox">
+                                      <label for="checkbox4" class="form-check-label ">
+                                          <input type="checkbox" id="checkbox4" name="checkbox4" value="option4" class="form-check-input check2">
+                                        </label>
+                                  </div>
+                                </div>
+                              </th>
+                                <th scope="row">4</th>
+                                <td>What Is The CVV Of Your Credit Card?</td>
+                                <td>1300</td>
+                                <td>Integer(3)</td>
+                                <td>CVV</td>
+                            </tr>
+                            <tr>
+                              <th scope="col"> <div class="form-check">
+                                  <div class="checkbox">
+                                      <label for="checkbox5" class="form-check-label ">
+                                          <input type="checkbox" id="checkbox5" name="checkbox5" value="option1" class="form-check-input check2">
+                                        </label>
+                                  </div>
+                                </div>
+                              </th>
+                                <th scope="row">5</th>
+                                <td>What Is Your ID Number?</td>
+                                <td>1200</td>
+                                <td>Integer(9)</td>
+                                <td>UserID</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="checkall2 btn btn-primary">Select/Deselect</button>
                 </div>
             </div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                <div class="card-body">
+                        <h3 class="Cluster Title">Pay Police Ticket</h3>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col"> <i class="menu-icon fa fa-check-square-o"></i></th>
+                                    <th scope="col">Frequency Rank</th>
+                                    <th scope="col">Question</th>
+                                    <th scope="col">Number of Appearances</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Variable Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                  <th scope="col"> <div class="form-check">
+                                      <div class="checkbox">
+                                          <label for="checkbox1" class="form-check-label ">
+                                              <input type="checkbox" id="checkbox1" name="checkbox1" value="option1" class="form-check-input check3">
+                                            </label>
+                                      </div>
+                                    </div>
+                                  </th>
+                                  <th scope="row">1</th>
+                                  <td>What Is Your Full Name?</td>
+                                  <td>1500</td>
+                                  <td>String</td>
+                                  <td>UserName</td>
+                              </tr>
+                                <tr>
+                                  <th scope="col"> <div class="form-check">
+                                      <div class="checkbox">
+                                          <label for="checkbox2" class="form-check-label ">
+                                              <input type="checkbox" id="checkbox2" name="checkbox2" value="option2" class="form-check-input check3">
+                                            </label>
+                                      </div>
+                                    </div>
+                                  </th>
+                                    <th scope="row">2</th>
+                                    <td>How Much Is Your Debt?</td>
+                                    <td>1400</td>
+                                    <td>Integer</td>
+                                    <td>UserDebt</td>
+                                </tr>
+                                <tr>
+                                  <th scope="col"> <div class="form-check">
+                                      <div class="checkbox">
+                                          <label for="checkbox3" class="form-check-label ">
+                                              <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input check3">
+                                            </label>
+                                      </div>
+                                    </div>
+                                  </th>
+                                    <th scope="row">3</th>
+                                    <td>What Is Your Credit Card Number?</td>
+                                    <td>1350</td>
+                                    <td>Integer(16)</td>
+                                    <td>CreditCard</td>
+                                </tr>
+                                <tr>
+                                  <th scope="col"> <div class="form-check">
+                                      <div class="checkbox">
+                                          <label for="checkbox4" class="form-check-label ">
+                                              <input type="checkbox" id="checkbox4" name="checkbox4" value="option4" class="form-check-input check3">
+                                            </label>
+                                      </div>
+                                    </div>
+                                  </th>
+                                    <th scope="row">4</th>
+                                    <td>What Is The CVV Of Your Credit Card?</td>
+                                    <td>1300</td>
+                                    <td>Integer(3)</td>
+                                    <td>CVV</td>
+                                </tr>
+                                <tr>
+                                  <th scope="col"> <div class="form-check">
+                                      <div class="checkbox">
+                                          <label for="checkbox5" class="form-check-label ">
+                                              <input type="checkbox" id="checkbox5" name="checkbox5" value="option1" class="form-check-input check3">
+                                            </label>
+                                      </div>
+                                    </div>
+                                  </th>
+                                    <th scope="row">5</th>
+                                    <td>What Is Your ID Number?</td>
+                                    <td>1200</td>
+                                    <td>Integer(9)</td>
+                                    <td>UserID</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col"> <div class="form-check">
+                                        <div class="checkbox">
+                                            <label for="checkbox3" class="form-check-label ">
+                                                <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input check3">
+                                                </label>
+                                        </div>
+                                        </div>
+                                    </th>
+                                        <th scope="row">3</th>
+                                        <td>What Is Your License Plate Number?</td>
+                                        <td>1350</td>
+                                        <td>Integer(8)</td>
+                                        <td>LicenseNumber</td>
+                                    </tr>
+                            </tbody>
+                        </table>
+                        <button type="button" class="checkall3 btn btn-primary">Select/Deselect</button>
+                    </div>
         </div>
-      </div>
     </div>
-<!-- /Right Panel -->
+</div>
 
-    <script src="vendors/jquery/dist/jquery.min.js"></script>
-    <script src="vendors/popper.js/dist/umd/popper.min.js"></script>
-    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="assets/js/main.js"></script>
 
-    <script src="vendors/chart.js/dist/Chart.bundle.min.js"></script>
-    <script src="assets/js/dashboard.js"></script>
-    <script src="assets/js/widgets.js"></script>
-    <script src="vendors/jqvmap/dist/jquery.vmap.min.js"></script>
-    <script src="vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
-    <script src="vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+<script>
+        var clicked3 = false;
+        $(".checkall3").on("click", function() {
+            $(".check3").prop("checked", !clicked3);
+            clicked3 = !clicked3;
+        });
+
+        var clicked2 = false;
+        $(".checkall2").on("click", function() {
+            $(".check2").prop("checked", !clicked2);
+            clicked2 = !clicked2;
+        });
+
+        var clicked = false;
+        $(".checkall").on("click", function() {
+            $(".check").prop("checked", !clicked);
+            clicked = !clicked;
+        });
+</script>
+
     <script>
         (function($) {
             "use strict";

@@ -1,6 +1,7 @@
 .shadowbox {
     text-align: center;
     vertical-align: middle;
+    font-weight: bold;
     width: 5em;
     border: 1px solid #333;
     box-shadow: 8px 8px 5px #444;
@@ -59,6 +60,7 @@
     position: relative;
     padding-top: 5px;
     padding-bottom: 5px;
+    height: 20px;
 }
 
 .flowchart-operator-connector-label {
@@ -133,7 +135,7 @@
 
 .flowchart-operator {
     position: absolute;
-    width: 140px;
+    width: 115px;
     border: 1px solid #CCCCCC;
     background: #FAFAFA;
     pointer-events: initial;
@@ -177,19 +179,8 @@
     width: 50%;
 }
 
-.flowchart-play {
-    display: table-cell;
-    width: 20%;
-    text-align: center;
-    background-color: cornsilk;
-}
-.flowchart-test-operator {
-    display: table-cell;
-    width: 20%;
-}
-.flowchart-logic{
-    display: table-cell;
-    width: 20%;
+.flowchart-logic {
+   width: 150px;
 }
 .animation:hover {
     background-color: #3e8e41;

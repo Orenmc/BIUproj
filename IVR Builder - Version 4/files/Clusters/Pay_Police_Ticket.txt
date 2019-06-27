@@ -1,0 +1,4 @@
+What is your name?,String,userName
+How much is your debt?,Integer,userDebt
+How many payments do you want?,Integer,numOfPay
+What is your credit card number?,String,creditCard
