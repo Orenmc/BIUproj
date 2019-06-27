@@ -6,11 +6,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Botalks IVR Builder</title>
+    <meta name="description" content="Botalks">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="apple-touch-icon" href="apple-icon.png">
     <link rel="shortcut icon" href="images/logoBotalks2.png">
-
     <link rel="stylesheet" href="vendors/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="vendors/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="vendors/themify-icons/css/themify-icons.css">
@@ -20,16 +20,17 @@
     <script type="text/javascript" src="https://cdn.rawgit.com/asvd/dragscroll/master/dragscroll.js"></script>
 
     <link rel="stylesheet" href="assets/css/style.css">
-
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
 
     <link href="assets/css/jquery.flowchart.css" rel="stylesheet" type="text/css">
     <style>
-        html, body {
+        html,
+        body {
             max-width: 100%;
             overflow-x: hidden;
         }
+
         body {
             background-color: #fafafa;
         }
@@ -40,28 +41,29 @@
 
         .demo {
             border-color: black;
-            width:100%;
+            width: 100%;
             height: 100%;
             margin-left: 20px;
             position: sticky;
         }
+
         #large-container {
-        width: 3000px;
-        height: 3000px;
-        overflow: hidden;
-        margin-left: 20px;
+            width: 3000px;
+            height: 3000px;
+            overflow: hidden;
+            margin-left: 20px;
 
-      }
+        }
 
-      #scroll-container {
-        width: calc(50% - 22px);
-        height: calc(80vh - 22px);
-        overflow: auto;
-        margin: 10px;
-        border: 1px solid grey;
-        margin-left: 20px;
-        background-image: url('./images/background.jpg')
-      }
+        #scroll-container {
+            width: calc(50% - 22px);
+            height: calc(80vh - 22px);
+            overflow: auto;
+            margin: 10px;
+            border: 1px solid grey;
+            margin-left: 20px;
+            background-image: url('./images/background.jpg')
+        }
 
         .draggable_operator {
             display: inline-block;
@@ -71,10 +73,7 @@
             cursor: grab;
             user-select: none;
         }
-    </style>
-    <style>
-        label,
-        input {
+        label, input {
             display: block;
         }
 
@@ -122,13 +121,11 @@
             padding: 0.3em;
         }
     </style>
+    <!--till here is all Shir work, and styling-->
 </head>
 
 <body>
-
-
     <!-- Left Panel -->
-
     <aside id="left-panel" class="left-panel">
         <nav class="navbar navbar-expand-sm navbar-default">
 
@@ -173,10 +170,7 @@
         </nav>
     </aside><!-- /#left-panel -->
 
-    <!-- Left Panel -->
-
     <!-- Right Panel -->
-
     <div id="right-panel" class="right-panel">
 
         <!-- Header-->
@@ -246,6 +240,8 @@
         </header>
 
         <body>
+            <!-- from here till end - is Snir and Oren Work-->
+            <!--buttons of Operators (all of them Drag&Drop)-->
             <div class="row" style="height:30px;margin-left: 0px; margin-bottom:0.5%">
                 <div class="draggable_operator shadowbox snir" data-nb-inputs="1" data-nb-outputs="2"
                     data-class="flowchart-logic">Logic</div>
@@ -259,24 +255,28 @@
                     data-class="flowchart-getInput">Get Input</div>
                 <div class="draggable_operator shadowbox" data-nb-inputs="1" data-nb-outputs="0" style="width: 94px;"
                     data-class="flowchart-disconnect">Disconnect</div>
-                <select class="form-control" onchange="getJsonFileFromServer()" id="FlowChartDropDown" style="width: 7%; margin-left:1rem ">
+                <!--Drop Down (Bootstrap), when click fetch all relevent data from server-->
+                <select class="form-control" onchange="getJsonFileFromServer()" id="FlowChartDropDown"
+                    style="width: 7%; margin-left:1rem ">
                     <option value='Empty'>- Empty Flow Chart -</option>
                 </select>
             </div>
-
+            <!-- this is the "whiteboard" for build the flowchart, and it is scrollable-->
             <div id="scroll-container">
-                    <div id="large-container">
-                          <div class="demo dragscroll" id="ivr">
-                          </div>
+                <div id="large-container">
+                    <div class="demo dragscroll" id="ivr">
                     </div>
-                  </div>
-            
+                </div>
+            </div>
+            <!--functional buttons for flowchart s.t save/load to serve, delete, activate and more-->
             <div class="row" style="height:30px;margin-left: 15px; margin-bottom: 1%">
                 <button type="button" class="button social-button animationDanger" id="delete_selected_button">Delete
                     Operator</button>
                 <button type="button" class="button social-button animation" id="activate_button">Activate</button>
-                <button type="button" class="button social-button animation" data-target="#saveAsModal" data-toggle="modal">Save To Server</button>
-                <button type="button" class="button social-button animationDanger" data-target="#deleteModal" data-toggle="modal" onclick="initDeleteModal()">Delete From Server</button>
+                <button type="button" class="button social-button animation" id="saveButton" data-target="#saveAsModal"
+                    data-toggle="modal">Save To Server</button>
+                <button type="button" class="button social-button animationDanger" data-target="#deleteModal"
+                    data-toggle="modal" onclick="initDeleteModal()">Delete From Server</button>
                 <button type="button" class="button social-button animation" id="get_data">Save State</button>
                 <button type="button" class="button social-button animation" id="set_data">Load Last State</button>
                 <button type="button" class="button social-button animation" id="clear">Clear</button>
@@ -284,7 +284,7 @@
                     style="display: none;color: red">Edit Operator</button>
             </div>
             <div class="row">
-                <textarea cols="50" rows="10" id="printToHTML" style="margin-left: 25px" readonly></textarea>              
+                <textarea cols="50" rows="10" id="printToHTML" style="margin-left: 25px" readonly></textarea>
             </div>
     </div>
 
@@ -292,6 +292,7 @@
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <script src="assets/js/jquery.flowchart.js"></script>
     <script src="assets/js/filer.js"></script>
+    <script src="assets/js/global.js"></script>
 
     <!--delete modal-->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
@@ -313,7 +314,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" id="delete_button" class="btn btn-primary" data-dismiss="modal">Delete</button>
+                    <button type="button" id="delete_button" class="btn btn-primary"
+                        data-dismiss="modal">Delete</button>
                 </div>
             </div>
         </div>
@@ -340,7 +342,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" id="save_button" class="btn btn-primary" data-dismiss="modal">Save</button>
+                    <button type="button" id="server_save_button" class="btn btn-primary" data-dismiss="modal">Save</button>
                 </div>
             </div>
         </div>
@@ -360,10 +362,10 @@
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                                <label for="get-title-name" class="col-form-label">Title:</label>
-                                <input type="text" class="form-control" id="get-title-name">
-                                <label for="get-variable-name" class="col-form-label">Varaible Name:</label>
-                                <input type="text" class="form-control" id="get-variable-name">                        
+                            <label for="get-title-name" class="col-form-label">Title:</label>
+                            <input type="text" class="form-control" id="get-title-name">
+                            <label for="get-variable-name" class="col-form-label">Varaible Name:</label>
+                            <input type="text" class="form-control" id="get-variable-name">
                         </div>
                     </form>
                 </div>
@@ -403,7 +405,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary save_changes" data-dismiss="modal">
-                            Apply
+                        Apply
                     </button>
                 </div>
             </div>
@@ -511,14 +513,15 @@
         </div>
     </div>
 
-
     <script>
         $(document).ready(function () {
             $('html').keydown(function (e) {
-                if (e.keyCode == 46) {
+                // when press delete/backspace on keyboard delete selected operator
+                if (e.keyCode == 46 || e.keyCode == 8) {
                     $('#ivr').flowchart('deleteSelected');
                 }
             });
+            // initalized data (always has start operator)
             var data = {
                 operators: {
                     Start: {
@@ -533,67 +536,62 @@
                                 }
                             },
                             class: 'Start',
-                            tts: '',
-                            wav: '',
-                            return_type: '',
-
 
                         }
                     }
                 }
             };
-
-
-            var $operatorProperties = $('#operator_properties');
-           
+            // this is the operator var, when we drag one 
             var $draggableOperators = $('.draggable_operator');
 
             //Init the clusters
             var clusters = {}
-            const url = "http://localhost:3000/api/GetClusters";
+            /**
+             * notice this is for local use!
+             * if you want to work on server - change here to config.server
+             */
+            let config = clientConfig()
+            const url = config.local + "GetClusters";
+            // get all exists clusters from sever
             fetch(url, {
                 method: 'get'
             })
-            .then(data => { return data.json() })
-            .then(res => {
-                if(res.msg == 'OK'){
-                res.clustersName.forEach(element => {
-                    var o = new Option(element, "value");
-                    o.value = element;
-                    $(o).html(element);
-                    $("#clusterDropDown").append(o);
-                });
-                clusters = res.clustersContent;
-                $('#ivr').flowchart('setClusters', clusters);
-            } else if(res.msg == 'Failed'){
-                alert('Failed To Get The Clusters - Internal Server Error')
-            }})
-            .catch(function () {
-                alert('Failed To Get The Clusters - Server Is Off')
-            })
+                .then(data => { return data.json() })
+                .then(res => {
+                    if (res.msg == 'OK') {
+                        res.clustersName.forEach(element => {
+                            var o = new Option(element, "value");
+                            o.value = element;
+                            $(o).html(element);
+                            $("#clusterDropDown").append(o);
+                        });
+                        clusters = res.clustersContent;
+                        $('#ivr').flowchart('setClusters', clusters);
+                    } else if (res.msg == 'Failed') {
+                        alert('Failed To Get The Clusters - Internal Server Error')
+                    }
+                })
+                .catch(function () {
+                    alert('Failed To Get The Clusters - Server Is Off')
+                })
 
             //Get all json files name from server
             getJsonFileName()
 
 
-            //this gets the data from the D&D buttons
+            //this gets the data from the Drag&Drop buttons
             function getOperatorData($element) {
                 var nbInputs = parseInt($element.data('nb-inputs'));
                 var nbOutputs = parseInt($element.data('nb-outputs'));
                 var op_class = $element.data('class');
-                var ret_type;
-                var outputLabel = ''
 
-                if (op_class == 'flowchart-play') {
-                    ret_type = 'string';
-                } else ret_type = 'int';
                 var data = {
                     id: $('#ivr').flowchart('getOperatorNum'),
                     properties: {
                         title: $element.text(),
                         inputs: {},
                         outputs: {},
-                        return_type: ret_type,
+                        return_type: '',
                         class: op_class,
                         tts: '',
                         wav: '',
@@ -603,32 +601,27 @@
                         variable_name: ''
                     }
                 };
+                // all operators have only one input
+                data.properties.inputs['input_0'] = {
+                    label: ''
+                };
+                // operator can have 1 or more outouts, in logic we can esit them!
+                for (let i = 0; i < nbOutputs; i++) {
+                    let prefix = '';
+                    if(op_class == 'flowchart-logic'){
+                        prefix = 'Edit'
+                    }
 
-                var i = 0;
-                for (i = 0; i < nbInputs; i++) {
-                    data.properties.inputs['input_' + i] = {
-                        label: ''
+                    data.properties.outputs['output_' + i] = {                       
+                        label: prefix
+
                     };
                 }
-                if (op_class == 'flowchart-logic') {
-                    for (i = 0; i < nbOutputs; i++) {
-                        data.properties.outputs['output_' + i] = {
-                            label: 'Output ' + (i + 1)
-                        };
-                    }
-                } else {
-                    for (i = 0; i < nbOutputs; i++) {
-                        data.properties.outputs['output_' + i] = {
-                            label: ''
-                        };
-                    }
-                }
-
                 return data;
             }
 
             var operatorId = 0;
-
+            // this function works when drag a dragable operator
             $draggableOperators.draggable({
                 cursor: "move",
                 opacity: 0.7,
@@ -671,365 +664,13 @@
 
             // Apply the plugin on a standard, empty div...
             $('#ivr').flowchart({
-                data: data,
-                onOperatorSelect: function (operatorId) {
-                    let prop = $('#ivr').flowchart('getOperatorProperties', operatorId);
-
-                    if (prop.class == 'Start') {
-                        return false
-                    }
-                    // display the edit button
-                    $('#edit_button').css('display', 'none');
-                    //remove modal data-target, will rise up dynamicly
-                    $('#edit_button').removeAttr('data-target');
-                    localStorage.setItem("operatorID", operatorId)
-
-                    if (prop.class != 'flowchart-disconnect') {
-                        $('#edit_button').css('display', 'block');
-                    }
-                    //check which modal to upload
-                    if (prop.class == "flowchart-play") {
-                        $('#edit_button').attr('data-target', "#playModal")
-
-                        $('#play-wav-name').val(prop.wav)
-                        $('#play-tts-name').val(prop.tts)
-                        $('#play-title-name').val(prop.title)
-                        $('#play-time-name').val(prop.time)
-
-                        // when choos OP, decide which part to block! tts/wav                            
-                        if ($('#play-wav-name').val() == '' && $('#play-tts-name').val() == '') {
-                            $('#play-tts-name').removeAttr('disabled');
-                            $('#play-wav-name').removeAttr('disabled');
-                        } else if ($('#play-wav-name').val() == '' && $('#play-tts-name').val() != '') {
-                            $('#play-tts-name').removeAttr('disabled');
-                            $('#play-wav-name').attr('disabled', 'disabled');
-                        } else if ($('#play-wav-name').val() != '' && $('#play-tts-name').val() == '') {
-                            $('#play-wav-name').removeAttr('disabled');
-                            $('#play-tts-name').attr('disabled', 'disabled');
-                        }
-
-                    } else if (prop.class == "flowchart-logic") {
-                        $('#edit_button').attr('data-target', "#logicModal")
-                        //init all data from modal
-                        out_size = Object.keys(prop.outputs).length
-                        $('#logic-title-name').val(prop.title)
-                        $('#logic-return-name').val(prop.return_type)
-                        $('#logic-outputs-name').val(out_size)
-
-                    } else if (prop.class == "flowchart-route") {
-                        $('#edit_button').attr('data-target', "#routeModal")
-                        $('#route-title-name').val(prop.title)
-                        $('#route-route-name').val(prop.route)
-
-                    } else if (prop.class == "flowchart-cluster") {
-                        $('#edit_button').attr('data-target', "#clusterModal")
-                        $('#cluster-title-name').val(prop.title)
-                        if (prop.cluster != '') {
-                            $('#clusterDropDown').val(prop.cluster)
-                        } else {
-                            $('#clusterDropDown').val('Empty')
-
-                        }
-                    } else if (prop.class == "flowchart-getInput") {
-                        $('#edit_button').attr('data-target', "#getModal")
-                        $('#get-title-name').val(prop.title)
-                        $('#get-variable-name').val(prop.variable_name)
-                    }
-
-                    return true;
-                },
-                onOperatorUnselect: function () {
-                    $('#edit_button').css('display', 'none');
-                    return true;
-                },
+                data: data
             });
-         
-            $('#play-wav-name').keyup(function () {
-                if ($('#play-wav-name').val() != '') {
-                    $('#play-tts-name').attr('disabled', 'disabled');
-                }
-                else {
-                    $('#play-tts-name').removeAttr('disabled');
-                }
-            });
-            $('#play-tts-name').keyup(function () {
-                if ($('#play-tts-name').val() != '') {
-                    $('#play-wav-name').attr('disabled', 'disabled');
-                }
-                else {
-                    $('#play-wav-name').removeAttr('disabled');
-                }
-            });
+            // init all
+            initButtonsEvent();
         });
 
-        $('#delete_selected_button').click(function () {
-            $('#ivr').flowchart('deleteSelected');
-        });
-
-        $('#save_button').click(function () {
-            var data = $('#ivr').flowchart('getData');
-            if(Object.keys(data.operators).length == 1){
-                alert('Can Not Save Empty Flow Chart')
-                return false
-            } else {
-                if($('#file-name').val().includes('.')){
-                    alert('Can Use . For File Name')
-                    return false;
-                }
-                console.log($('#file-name').val(),'line 763 - save button')
-                $('#ivr').flowchart('saveIVR',$('#file-name').val());
-            }
-        });
         
-        $('#activate_button').click(function () {
-            $('#ivr').flowchart('printIVR');
-
-        });
-        
-        // save data to local storage
-        $('#get_data').click(function () {
-            var data = $('#ivr').flowchart('getData');
-            var JsonData = JSON.stringify(data);
-            localStorage.setItem("data", JsonData);
-
-        });
-
-        $('#set_data').click(function () {
-            var data = JSON.parse(localStorage.getItem("data"));
-            $('#ivr').flowchart('setData', data);
-        });
-
-        $('#delete_button').click(function() {
-            var userConfirm = confirm("Are You Sure You Want To Delete These Files?");
-            if (userConfirm == false) {
-                return false
-            }            
-            var selected = [];
-            $('#FlowChartFiles input:checked').each(function() {
-                selected.push($(this).val());
-            });
-
-            const jsonUrl = "http://localhost:3000/api/DeleteJsonFiles";
-            fetch(jsonUrl, {
-                method: 'delete',
-                body:JSON.stringify(selected),
-                headers:{
-                    'Content-Type': 'application/json',
-                }
-            })
-            .then(res => {
-                if(res.statusText == 'OK'){
-                    selected.forEach(element => {
-                        if($('#FlowChartDropDown').val() == element){
-                            initEmptyFlowChart()
-                        }
-                        console.log(element)
-                        $("#FlowChartDropDown option[value="+element+"]").remove();
-                    })
-                } else {
-                    alert('Can Not Delete Files - Internal Server Error')
-                }
-            }).catch(function () {
-                alert('Failed To Get The Exists Flow Charts - Server Is Off')
-            })
-
-
-        })
-        $('.save_changes').click(function () {
-            //need to use this for popup initilized
-            let opId = localStorage.getItem("operatorID")
-            let prop = $('#ivr').flowchart('getOperatorProperties', opId);
-            let dict = {};
-            // change dynamiclly 
-            if (prop.class == 'flowchart-play') {
-                dict = {
-                    title: $('#play-title-name').val(),
-                    wav: $('#play-wav-name').val(),
-                    tts: $('#play-tts-name').val(),
-                    time: $('#play-time-name').val()
-                }
-            } else if (prop.class == 'flowchart-logic') {
-                var outputs = []
-                var l = $('div#outputDiv :input');
-                $('div#outputDiv :input').each(function () {
-                    var input = $(this);
-                    let newLabel = input['0'].placeholder;
-                    if (input.val() !== '') {
-                        newLabel = input.val()
-                    }
-                    outputs.push(newLabel);
-                });
-                console.log(outputs)
-                dict = {
-                    title: $('#logic-title-name').val(),
-                    return_type: $('#logic-return-name').val(),
-                    input_size: $('#logic-inputs-name').val(),
-                    output_size: $('#logic-outputs-name').val(),
-                    outputs_labels: outputs
-                }
-
-            } else if (prop.class == 'flowchart-route') {
-                dict = {
-                    title: $('#route-title-name').val(),
-                    route: $('#route-route-name').val(),
-                }
-
-            } else if (prop.class == 'flowchart-cluster') {
-                if ($('#clusterDropDown').val() == 'Empty') {
-                    alert('No Cluster Was Choosen')
-                    return false;
-                }
-                dict = {
-                    title: $('#cluster-title-name').val(),
-                    cluster: $('#clusterDropDown').val()
-                }
-            } else if(prop.class == 'flowchart-getInput'){
-                dict = {
-                    title:$('#get-title-name').val(),
-                    variable_name:$('#get-variable-name').val()
-                }
-            }
-            $('#ivr').flowchart('setOperatorChanges', opId, dict)
-        })
-
-        $('#clear').click(function () {
-            var txt;
-            var r = confirm("Save Your State!\n Are You Sure?");
-            if (r == true) {
-                initEmptyFlowChart()
-            }
-            $("#printToHTML").empty();
-        });      
-     
-        function onOutputChange() {
-            //need to use this for popup initilized
-            let opId = localStorage.getItem("operatorID")
-            let prop = $('#ivr').flowchart('getOperatorProperties', opId);
-            $('#Logic').empty()
-            console.log('test')
-            out_size = $('#logic-outputs-name').val()
-
-            let i = out_size
-
-            var formgroup = $('<div/>', {
-                class: 'form-group',
-                id: 'outputDiv'
-            })
-            for (let j = 0; j < i; j++) {
-                formgroup.append($('<label>', {
-                    class: 'col-form-label',
-                    text: 'label ' + (j + 1) + ':'
-                }));
-                let placeHolder = 'Output ' + (j + 1)
-                if (prop.outputs['output_' + j]) {
-                    placeHolder = prop.outputs['output_' + j].label
-                }
-                formgroup.append($('<input>', {
-                    class: 'form-control',
-                    type: 'text',
-                    placeholder: placeHolder,
-                    id: j.toString(),
-                }));
-                $('#Logic').append(formgroup)
-            }
-        }
-
-        function getJsonFileFromServer() {
-            if($('#FlowChartDropDown').val() == 'Empty'){
-                initEmptyFlowChart()
-                return false;
-            }
-            const url = "http://localhost:3000/api/GetJsonFile/" + $('#FlowChartDropDown').val();
-            fetch(url, {
-                method: 'get',
-            })
-                .then(data => { return data.json() })
-                .then(res => {
-                    if(res.msg == 'OK'){
-                        $('#ivr').flowchart('setData', res.data);
-                    } else if (res.msg == 'Failed'){
-                        alert('Failed To Get The Flow Chart - Internal Server Error')
-                    }
-                }).catch(function () {
-                    alert('Failed To Get The Flow Chart - Server Is Off')
-                })
-        }
-
-        function getJsonFileName(){
-            const jsonUrl = "http://localhost:3000/api/GetJsonCharts";
-            fetch(jsonUrl, {
-                method: 'get'
-            })
-            .then(data => { return data.json() })
-            .then(res => {
-                if(res.msg == 'OK') {
-                    $("#FlowChartFiles").empty();
-                    res.jsonName.forEach(element => {
-                        //Add the file names to FlowChart DropDown
-                        var o = new Option(element, "value");
-                        o.value = element;
-                        $(o).html(element);
-                        $("#FlowChartDropDown").append(o);
-                    });
-                } else if(res.msg == 'Failed'){
-                    alert('Failed To Get The Exists Flow Charts - Internal Server Error')
-                }
-            }).catch(function () {
-                alert('Failed To Get The Exists Flow Charts - Server Is Off')
-            })
-        }
-
-        function initDeleteModal(){
-            const jsonUrl = "http://localhost:3000/api/GetJsonCharts";
-            fetch(jsonUrl, {
-                method: 'get'
-            })
-                .then(data => { return data.json() })
-                .then(res => {
-                    $("#FlowChartFiles").empty();
-                    res.jsonName.forEach(element => {
-                        formgroup.append($('<input>', {
-                            class: 'form-check-input',
-                            type: 'checkbox',
-                            value: element
-                        }));
-                        formgroup.append($('<label>', {
-                            class: 'form-check-label',
-                            text: element
-                        }));
-                        $('#FlowChartFiles').append(formgroup)
-                    });
-                }).catch(function () {
-                    alert('Failed To Get The Exists Flow Charts - Server Is Off')
-                })
-
-            var formgroup = $('<div/>', {
-                class: 'form-check',
-            })
-        }
-
-        function initEmptyFlowChart(){
-            var data = {
-                    operators: {
-                        Start: {
-                            id: 'Start',
-                            top: 10,
-                            left: 10,
-                            properties: {
-                                title: 'Start',
-                                inputs: {},
-                                outputs: {
-                                    output_1: {
-                                        label: '',
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            $('#FlowChartDropDown').val('Empty')
-            $('#ivr').flowchart('setData', data);
-        }
     </script>
 </body>
 

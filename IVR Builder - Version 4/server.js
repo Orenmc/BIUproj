@@ -80,7 +80,6 @@ app.get('/api/GetJsonCharts',(req,res,next) => {
     try{
         fs.readdirSync(config.jsonFilePath).forEach(file => {
             flowChartNames.push(file.split('.')[0])
-            console.log(file)
         });
         res.status(200).json({
             jsonName: flowChartNames,
@@ -96,12 +95,9 @@ app.get('/api/GetJsonCharts',(req,res,next) => {
 //This middleware returns back the content of specific JSON file.
 app.get('/api/GetJsonFile/:name',(req,res,next) => {
     try{
-        console.log('$$$$' + req.params.name + '$$$$')
         var contents = fs.readFileSync(path.join(config.jsonFilePath,
                         req.params.name+'.json'));
-        console.log('$$$$' + req.params.name + '$$$$')
         var jsonContent = JSON.parse(contents);
-        console.log(jsonContent)
         res.json({
                 msg:'OK',
                 data:jsonContent
@@ -142,7 +138,6 @@ app.get('/api/GetClusters',(req,res,next) => {
             clustersContent: clusterContent
         });
     } catch(err){
-        console.log(err)
         res.json({
             msg:'Failed'
         });
@@ -153,7 +148,6 @@ app.get('/api/GetClusters',(req,res,next) => {
 
 //This middleware delete some JSON files, depend on the user request.
 app.delete('/api/DeleteJsonFiles',(req,res,next) => {
-    console.log('Income: Delete Request - Delete Json Files: ' + req.body)
     req.body.forEach(element => {
         try{
             fs.unlinkSync(path.join(config.jsonFilePath,element+'.json'))

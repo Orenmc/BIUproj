@@ -17,9 +17,76 @@ $(function () {
             multipleLinksOnInput: true,
             linkVerticalDecal: -2,
             onOperatorSelect: function (operatorId) {
+                let prop = $('#ivr').flowchart('getOperatorProperties', operatorId);
+
+                if (prop.class == 'Start') {
+                    // do not do enything!
+                    return false
+                }
+                // display the edit button
+                $('#edit_button').css('display', 'none');
+                //remove modal data-target, will rise up dynamicly
+                $('#edit_button').removeAttr('data-target');
+                localStorage.setItem("operatorID", operatorId)
+                /**
+                 * now we add a data-target to the edit button with the relavent modal
+                 */
+
+                if (prop.class != 'flowchart-disconnect') {
+                    // no need to display edit for disconnect op
+                    $('#edit_button').css('display', 'block');
+                }
+                //check which modal to upload
+                if (prop.class == "flowchart-play") {
+                    $('#edit_button').attr('data-target', "#playModal")
+                    $('#play-wav-name').val(prop.wav)
+                    $('#play-tts-name').val(prop.tts)
+                    $('#play-title-name').val(prop.title)
+                    $('#play-time-name').val(prop.time)
+
+                    // when choos OP, decide which part to block! tts/wav                            
+                    if ($('#play-wav-name').val() == '' && $('#play-tts-name').val() == '') {
+                        $('#play-tts-name').removeAttr('disabled');
+                        $('#play-wav-name').removeAttr('disabled');
+                    } else if ($('#play-wav-name').val() == '' && $('#play-tts-name').val() != '') {
+                        $('#play-tts-name').removeAttr('disabled');
+                        $('#play-wav-name').attr('disabled', 'disabled');
+                    } else if ($('#play-wav-name').val() != '' && $('#play-tts-name').val() == '') {
+                        $('#play-wav-name').removeAttr('disabled');
+                        $('#play-tts-name').attr('disabled', 'disabled');
+                    }
+
+                } else if (prop.class == "flowchart-logic") {
+                    $('#edit_button').attr('data-target', "#logicModal")
+                    //init all data from modal
+                    out_size = Object.keys(prop.outputs).length // amount of output labels
+                    $('#logic-title-name').val(prop.title)
+                    $('#logic-outputs-name').val(out_size)
+
+                } else if (prop.class == "flowchart-route") {
+                    $('#edit_button').attr('data-target', "#routeModal")
+                    $('#route-title-name').val(prop.title)
+                    $('#route-route-name').val(prop.route)
+
+                } else if (prop.class == "flowchart-cluster") {
+                    $('#edit_button').attr('data-target', "#clusterModal")
+                    $('#cluster-title-name').val(prop.title)
+                    if (prop.cluster != '') {
+                        $('#clusterDropDown').val(prop.cluster)
+                    } else {
+                        $('#clusterDropDown').val('Empty')
+
+                    }
+                } else if (prop.class == "flowchart-getInput") {
+                    $('#edit_button').attr('data-target', "#getModal")
+                    $('#get-title-name').val(prop.title)
+                    $('#get-variable-name').val(prop.variable_name)
+                }
+
                 return true;
             },
             onOperatorUnselect: function () {
+                $('#edit_button').css('display', 'none');
                 return true;
             },
             onOperatorMouseOver: function (operatorId) {
@@ -64,8 +131,7 @@ $(function () {
         selectedLinkId: null,
         positionRatio: 1,
         globalId: null,
-        numOfOP: 0,// because of start
-        numOfEND: 0,// because of start
+
 
         // the constructor
         _create: function () {
@@ -204,10 +270,10 @@ $(function () {
             }
             this.redrawLinksLayer();
         },
-        setClusters: function(clusters){
+        setClusters: function (clusters) {
             this.clusters = clusters;
         },
-        getClusters: function(){
+        getClusters: function () {
             return this.clusters
         },
 
@@ -496,7 +562,6 @@ $(function () {
             var fullElement = {
                 operator: $operator,
                 title: $operator_title,
-                // msg: $operator_msg,
                 connectorSets: connectorSets,
                 connectors: connectors,
                 connectorArrows: connectorArrows,
@@ -573,15 +638,7 @@ $(function () {
         },
 
         createOperator: function (operatorId, operatorData) {
-
-            //TEST
             operatorData.id = operatorId;
-
-            if (operatorData.properties.title == 'END') {
-                this.numOfEND++
-            } else {
-                this.numOfOP++;
-            }
             operatorData.internal = {};
             this._refreshInternalProperties(operatorData);
 
@@ -680,7 +737,6 @@ $(function () {
         _connectorClicked: function (operator, connector, subConnector, connectorCategory) {
             if (connectorCategory == 'outputs') {
                 var d = new Date();
-                // var currentTime = d.getTime();
                 this.lastOutputConnectorClicked = {
                     operator: operator,
                     connector: connector,
@@ -1014,25 +1070,28 @@ $(function () {
             this._refreshInternalProperties(this.data.operators[operatorId]);
             this.callbackEvent('afterChange', ['operator_title_change']);
         },
-
+        /**
+         * set changes on specific operator (opID), with properties (data, in dict)
+         * @param {*} operatorId - operatorID
+         * @param {*} dict - dictionary of properties 
+         */
         setOperatorChanges: function (operatorId, dict) {
             this.data.operators[operatorId].internal.els.title.html(dict.title);
             if (typeof this.data.operators[operatorId].properties == 'undefined') {
                 this.data.operators[operatorId].properties = {};
             }
+            //this is all properties of all operators - 
+            //if properties is not in dict - it will be set as 'undifined'
             this.data.operators[operatorId].properties.wav = dict.wav;
             this.data.operators[operatorId].properties.title = dict.title;
             this.data.operators[operatorId].properties.tts = dict.tts;
-            this.data.operators[operatorId].properties.return_type = dict.return_type;
             this.data.operators[operatorId].properties.time = dict.time;
             this.data.operators[operatorId].properties.route = dict.route;
             this.data.operators[operatorId].properties.cluster = dict.cluster;
             this.data.operators[operatorId].properties.variable_name = dict.variable_name;
 
-            //######################################
-            //TODO: start here
-            //######################################
-            if (this.data.operators[operatorId].properties.class == 'flowchart-logic'){
+            // in logic we dynamiclly set the inputs/outputs
+            if (this.data.operators[operatorId].properties.class == 'flowchart-logic') {
                 // let nbInputs = parseInt(dict.input_size)
                 let nbOutputs = parseInt(dict.output_size)
                 // input_dict = this.data.operators[operatorId].properties.inputs
@@ -1041,22 +1100,24 @@ $(function () {
                 out_size = Object.keys(output_dict).length
                 
                 let labels = dict.outputs_labels;
-                if(nbOutputs > out_size) { //add
+                // we need to add/remove some of outputs, and change the links with some logic
+                if (nbOutputs > out_size) { //add
                     for (let i = out_size; i < nbOutputs; i++) {
                         output_dict['output_' + i] = {
-                            label: 'Output ' + (i+1)
-                            };
+                            label: 'Output ' + (i + 1)
+                        };
                     }
-                } else if (nbOutputs < out_size){ //remove
-                    for(let i = nbOutputs; i < out_size; i++){
+                } else if (nbOutputs < out_size) { //remove
+                    for (let i = nbOutputs; i < out_size; i++) {
                         delete output_dict['output_' + i]
                     }
-                    this.removeLinksFromOutput(operatorId,nbOutputs-1)
+                    this.removeLinksFromOutput(operatorId, nbOutputs - 1)
                 }
-                if(labels.length > 0){
-                    for(let k = 0 ; k < nbOutputs; k++){
-                        let outputLabel = 'Output ' + (k+1);
-                        if(labels[k]){
+                // if we have new labels (in the modal) change them!
+                if (labels.length > 0) {
+                    for (let k = 0; k < nbOutputs; k++) {
+                        let outputLabel = 'Output ' + (k + 1);
+                        if (labels[k]) {
                             outputLabel = labels[k]
                         }
                         output_dict['output_' + k] = {
@@ -1064,7 +1125,6 @@ $(function () {
                         };
                     }
                 }
-                // this.data.operators[operatorId].properties.inputs = input_dict;
                 this.data.operators[operatorId].properties.outputs = output_dict;
                 console.log(this.data.operators)
 
@@ -1074,45 +1134,33 @@ $(function () {
             this.callbackEvent('afterChange', ['operator_proprerties_change']);
             this.refreshFlowChart();
         },
-        refreshFlowChart: function(){
+        /**
+         * refresh the flowchart
+         */
+        refreshFlowChart: function () {
             this.setData(this.getData())
         },
-
-        removeLinksFromInput: function(operatorId,in_end) {
-            // ################### TODO: countino from here!
-            for (var linkId in this.data.links) {
-                if (this.data.links.hasOwnProperty(linkId)) {
-                    var currentLink = this.data.links[linkId];
-
-                    if (currentLink.toOperator == operatorId) {
-                        let temp = currentLink.toConnector.split('_')[1]
-                        if(temp > in_end){ //TODO: ehat with equals?
-                            //this.deleteLink(linkId);  NOT WORKING (tried also as this._deleteLink(linkID,true))
-                            delete this.data.links[linkId]
-                        }
-                        
-                    }
-                }
-            }
-        },
-        removeLinksFromOutput: function(operatorId,in_end) {
-            // ################### TODO: countino from here!
+    
+        /**
+         * this function remove links from logic op, only the ones that needed to be removed
+         * this will be invoked when client decrease number of outputs in LogicOP
+         * @param {int} operatorId - opID
+         * @param {int} in_end - number of outputs to change
+         */
+        removeLinksFromOutput: function (operatorId, in_end) {
             for (var linkId in this.data.links) {
                 if (this.data.links.hasOwnProperty(linkId)) {
                     var currentLink = this.data.links[linkId];
 
                     if (currentLink.fromOperator == operatorId) {
                         let temp = currentLink.fromConnector.split('_')[1]
-                        if(temp > in_end){ //TODO: ehat with equals?
-                            //this.deleteLink(linkId);  NOT WORKING (tried also as this._deleteLink(linkID,true))
+                        if (temp > in_end) { 
                             delete this.data.links[linkId]
                         }
-                        
                     }
                 }
             }
         },
-
 
         getOperatorTitle: function (operatorId) {
             return this.data.operators[operatorId].internal.properties.title;
@@ -1123,7 +1171,6 @@ $(function () {
 
 
         setOperatorData: function (operatorId, operatorData) {
-            //var infos = this.getOperatorCompleteData(operatorData);
             for (var linkId in this.data.links) {
                 if (this.data.links.hasOwnProperty(linkId)) {
                     var linkData = this.data.links[linkId];
@@ -1152,35 +1199,12 @@ $(function () {
         getOperatorNum: function () {
             return this.operatorNum;
         },
-        getEndNum: function () {
-            return this.numOfEND;
-        },
-        changeIdNumberOfOP: function () {
-            //delete this.selectedID - and change all titles above
-            var split = this.getOperatorTitle(this.selectedOperatorId).split(" ");
-            var id = parseInt(split[1]);
-            // console.log(id);
-
-            d = this.getData().operators;
-            // console.log(d)
-            for (op in d) {
-                var test = this.getOperatorTitle(op).split(" ");
-                var test_id = parseInt(test[1]);
-                // console.log(test_id);
-                if (test_id > id) {
-                    var new_id = test_id - 1;
-
-                    this.setOperatorTitle(op, test[0] + " " + new_id.toString());
-                }
-            }
-
-        },
         /**
-         * gets dictinary such that: key= OperatorID, value= all
+         * gets dictinary such that: key= OperatorID, value= all connection to this operator
          */
         linksByOPID: function () {
             var links = this.getData().links; //gets all links
-            var dict = [];      // {'start': [1,2,3], '1': [], '2': ['END']}
+            var dict = [];      // {'start': [1,2,3], '1': [], '2': ['3']}
             var ops = this.getData().operators;
             for (op in ops) {
                 var temp = [];
@@ -1196,6 +1220,10 @@ $(function () {
 
             return dict;
         },
+        /**
+         * make tree of Operators, each node in tree is: [operatorID, sons:{}]
+         * s.t sons is array of NODES  
+         */
         createStructureOfNodes: function () {
             var operators = this.getData().operators;
             var links = this.getData().links;
@@ -1233,73 +1261,75 @@ $(function () {
             return nodeList;
         },
 
-        saveIVR: function (fileName) {            
-            const url = "http://localhost:3000/api/SaveJsonChart";
-            fetch(url,{
-                method:'post',
-                body:JSON.stringify({
-                    data:{
+        saveFlowchartAsJson: function (fileName) {
+            let config = clientConfig();
+            /**
+             * of you want to work on server use config.sever
+             */
+            const url = config.local + 'SaveJsonChart';
+            fetch(url, {
+                method: 'post',
+                body: JSON.stringify({
+                    data: {
                         jsonObj: this.data,
                         fileName: fileName
                     }
-                }),  
-                headers:{
+                }),
+                headers: {
                     'Content-Type': 'application/json'
-                  }
-            }).then(data => { return data.json() })
-            .then(res => {
-                if(res.status == 200){
-                    if(res.flag == true){
-                        alert('Flow Chart Saved Successfull - File Exists - '
-                        +'Save As ' + res.name);
-                    } else {
-                        alert('Flow Chart Saved Successfully')
-                    }
-                    //Add file name to flowChart Select
-                    var o = new Option(res.name, "value");
-                    o.value = res.name;
-                    $(o).html(res.name);
-                    $("#FlowChartDropDown").append(o);
-                    $("#FlowChartDropDown").val(res.name)
-                    console.log(o,'line 1274')
-
-                    //Add file name to delete modal
-                    var formgroup = $('<div/>', {
-                        class: 'form-check',
-                    })
-        
-                    formgroup.append($('<input>', {
-                        class: 'form-check-input',
-                        type: 'checkbox',
-                        value: fileName
-                    }));
-                    formgroup.append($('<label>', {
-                        class: 'form-check-label',
-                        text: fileName
-                    }));
-                    $('#FlowChartFiles').append(formgroup)
-                } else if(res.status == 500){
-                    alert('Failed To Save The Flow Chart: ' + res.statusText)
                 }
-            })
-            .catch(function () {
-                alert('Failed - The Server Is Off')
-            })
-           
+            }).then(data => { return data.json() })
+                .then(res => {
+                    if (res.status == 200) {
+                        if (res.flag == true) {
+                            alert('Flow Chart Saved Successfull - File Exists - '
+                                + 'Save As ' + res.name);
+                        } else {
+                            alert('Flow Chart Saved Successfully')
+                        }
+                        //Add file name to flowChart Select
+                        var o = new Option(res.name, "value");
+                        o.value = res.name;
+                        $(o).html(res.name);
+                        $("#FlowChartDropDown").append(o);
+                        $("#FlowChartDropDown").val(res.name)
+
+                        //Add file name to delete modal
+                        var formgroup = $('<div/>', {
+                            class: 'form-check',
+                        })
+
+                        formgroup.append($('<input>', {
+                            class: 'form-check-input',
+                            type: 'checkbox',
+                            value: fileName
+                        }));
+                        formgroup.append($('<label>', {
+                            class: 'form-check-label',
+                            text: fileName
+                        }));
+                        $('#FlowChartFiles').append(formgroup)
+                    } else if (res.status == 500) {
+                        alert('Failed To Save The Flow Chart: ' + res.statusText)
+                    }
+                })
+                .catch(function () {
+                    alert('Failed - The Server Is Off')
+                })
+
         },
 
-        printIVR: function () {
+        saveTextForSIP: function () {
             var nodeList = this.createStructureOfNodes();
-            
+
             const flowChartString = this.serverPrint(nodeList);
-            console.log(flowChartString)
-            if(flowChartString == null){
+            if (flowChartString == null) {
                 alert('Can Not Activate Empty Flow Chart');
                 return false;
-            } else if (flowChartString == 'Error'){
+            } else if (flowChartString == 'Error') {
                 alert('You Have To Choose Cluster');
                 return false;
-            } else if (flowChartString == 'Play Error'){
+            } else if (flowChartString == 'Play Error') {
                 alert('Can Not Connect 2 Play In A Row')
                 return false;
             }
@@ -1307,34 +1337,38 @@ $(function () {
             flowChartString.forEach(line => {
                 $('#printToHTML').append(line + '\n')
             })
-            const url = "http://localhost:3000/api/SaveChartToFile";
-        
-            fetch(url,{
-                method:'post',
-                body:JSON.stringify({
-                    data:{
+            let config = clientConfig();
+            /**
+             * of you want to work on server use config.sever
+             */
+            const url = config.local + 'SaveChartToFile';
+
+            fetch(url, {
+                method: 'post',
+                body: JSON.stringify({
+                    data: {
                         str: flowChartString,
                     }
-                }),  
-                headers:{
+                }),
+                headers: {
                     'Content-Type': 'application/json'
                 }
-            }).then(data => {return data.json()})
-            .then(res => {alert(res.message)})
-            .catch(function () {
-                alert('Failed - The Server Is Off')
-            })
-           
+            }).then(data => { return data.json() })
+                .then(res => { alert(res.message) })
+                .catch(function () {
+                    alert('Failed - The Server Is Off')
+                })
+
         },
 
-        serverPrint: function(nodeList){
+        serverPrint: function (nodeList) {
             var operators = this.getData().operators;
             var clusters = this.getClusters();
             var flowCharString = [];
             var counter = 0;
             var node = nodeList['Start'];
-            
-            if(node){
+
+            if (node) {
                 flowCharString.push('####');
                 let prop = operators[node.op].properties;
                 let id = operators[node.op].id;
@@ -1345,98 +1379,98 @@ $(function () {
                 flowCharString.push('####');
 
                 // till here print only start
-                try{
-                Object.keys(nodeList).forEach(function (key) {
-                    if (key != 'Start') {
-                        var node = nodeList[key];
-                        let prop = operators[node.op].properties;
-                        if(prop.class == 'flowchart-play'){
-                            flowCharString.push('####');
-                            let name = operators[node.op].id;
-                            flowCharString.push('Operator name is: op' + name);
-                            let opSonClass = operators[node.sons[""]].properties.class.split('-')[1];
-                            if( opSonClass == 'play'){
-                                throw 'Play Error';
-                            }
-                            let opSonId = operators[node.sons[""]].id;
-                            flowCharString.push('Class: ' + opSonClass);
-                            
-                            if (prop.tts != '') {
-                                flowCharString.push('Say: "' + prop.tts + '"')
-                            }
-                            if (prop.wav != '') {
-                                flowCharString.push('Play: ' + prop.wav)
-                            }
-                            if (prop.time != '') {
-                                flowCharString.push('Wait_time: ' + prop.time)
-                            }
-
-                            if(opSonClass == 'logic'){
-                                // flowCharString.push('Return_type: ' + prop.return_type)
-                                //run over all sons of operator
-                                Object.keys(nodeList[opSonId].sons).forEach(function (output) {
-                                    let t = nodeList[opSonId].sons[output]
-                                    flowCharString.push('if ' + output + ' do -> op' + t);
-                            });
-                            } else if(opSonClass == 'route'){
-                                flowCharString.push('Route_to: ' + operators[opSonId].properties.route)
-                            } else if(opSonClass == 'getInput') {
-                                let t = nodeList[opSonId].sons[""]
-                                flowCharString.push('Get ' + operators[opSonId].properties.variable_name + ' -> op' + t)
-
-                            }
-                            flowCharString.push('####');
-                        } else if(prop.class == 'flowchart-cluster'){
-                            if(prop.cluster == ''){
-                                throw 'No Cluster';
-                            }
-                            let name = operators[node.op].id;
-                            var Questions = clusters[prop.cluster].questions
-                            var QuestionSize = Object.keys(Questions).length
-                            flowCharString.push('####');
-                            flowCharString.push('Operator name is: op' + name);
-                            flowCharString.push('Class: getInput')
-                            flowCharString.push('Say: "' + Questions[0].desc + '"')
-                            flowCharString.push('Get ' + Questions[0].name.trim() + ' -> Q' + (counter))
-                            flowCharString.push('####');
-
-                            let newCounter = 0
-                            Object.values(Questions).forEach(function (question) {
-                                if(newCounter == 0 || newCounter == QuestionSize - 1){
-                                    newCounter++
-                                } else {
-                                    flowCharString.push('####');
-                                    flowCharString.push('Operator name is: Q' + counter);
-                                    counter++
-                                    flowCharString.push('Say: "' + question.desc + '"')
-                                    flowCharString.push('Get ' + question.name.trim()+ ' -> Q' + (counter))
-                                    flowCharString.push('####');
-                                    newCounter++
+                try {
+                    Object.keys(nodeList).forEach(function (key) {
+                        if (key != 'Start') {
+                            var node = nodeList[key];
+                            let prop = operators[node.op].properties;
+                            if (prop.class == 'flowchart-play') {
+                                flowCharString.push('####');
+                                let name = operators[node.op].id;
+                                flowCharString.push('Operator name is: op' + name);
+                                let opSonClass = operators[node.sons[""]].properties.class.split('-')[1];
+                                if (opSonClass == 'play') {
+                                    throw 'Play Error';
                                 }
-                                //Next Question
-                            })
-                        flowCharString.push('####');
-                        flowCharString.push('Operator name is: Q' + counter);
-                        counter++;
-                        flowCharString.push('Class: getInput')
-                        flowCharString.push('Say: "' + Questions[QuestionSize-1].desc + '"')
-                        flowCharString.push('Get ' + Questions[QuestionSize-1].name.trim() + ' -> op' + operators[node.sons['']].id);
-                        flowCharString.push('####');
-                    }
-                }
-            });
-                return flowCharString;
-            } catch(e){
-                    if(e == 'No Cluster')
+                                let opSonId = operators[node.sons[""]].id;
+                                flowCharString.push('Class: ' + opSonClass);
+
+                                if (prop.tts != '') {
+                                    flowCharString.push('Say: "' + prop.tts + '"')
+                                }
+                                if (prop.wav != '') {
+                                    flowCharString.push('Play: ' + prop.wav)
+                                }
+                                if (prop.time != '') {
+                                    flowCharString.push('Wait_time: ' + prop.time)
+                                }
+
+                                if (opSonClass == 'logic') {
+                                    // flowCharString.push('Return_type: ' + prop.return_type)
+                                    //run over all sons of operator
+                                    Object.keys(nodeList[opSonId].sons).forEach(function (output) {
+                                        let t = nodeList[opSonId].sons[output]
+                                        flowCharString.push('if ' + output + ' do -> op' + t);
+                                    });
+                                } else if (opSonClass == 'route') {
+                                    flowCharString.push('Route_to: ' + operators[opSonId].properties.route)
+                                } else if (opSonClass == 'getInput') {
+                                    let t = nodeList[opSonId].sons[""]
+                                    flowCharString.push('Get ' + operators[opSonId].properties.variable_name + ' -> op' + t)
+
+                                }
+                                flowCharString.push('####');
+                            } else if (prop.class == 'flowchart-cluster') {
+                                if (prop.cluster == '') {
+                                    throw 'No Cluster';
+                                }
+                                let name = operators[node.op].id;
+                                var Questions = clusters[prop.cluster].questions
+                                var QuestionSize = Object.keys(Questions).length
+                                flowCharString.push('####');
+                                flowCharString.push('Operator name is: op' + name);
+                                flowCharString.push('Class: getInput')
+                                flowCharString.push('Say: "' + Questions[0].desc + '"')
+                                flowCharString.push('Get ' + Questions[0].name.trim() + ' -> Q' + (counter))
+                                flowCharString.push('####');
+
+                                let newCounter = 0
+                                Object.values(Questions).forEach(function (question) {
+                                    if (newCounter == 0 || newCounter == QuestionSize - 1) {
+                                        newCounter++
+                                    } else {
+                                        flowCharString.push('####');
+                                        flowCharString.push('Operator name is: Q' + counter);
+                                        counter++
+                                        flowCharString.push('Say: "' + question.desc + '"')
+                                        flowCharString.push('Get ' + question.name.trim() + ' -> Q' + (counter))
+                                        flowCharString.push('####');
+                                        newCounter++
+                                    }
+                                    //Next Question
+                                })
+                                flowCharString.push('####');
+                                flowCharString.push('Operator name is: Q' + counter);
+                                counter++;
+                                flowCharString.push('Class: getInput')
+                                flowCharString.push('Say: "' + Questions[QuestionSize - 1].desc + '"')
+                                flowCharString.push('Get ' + Questions[QuestionSize - 1].name.trim() + ' -> op' + operators[node.sons['']].id);
+                                flowCharString.push('####');
+                            }
+                        }
+                    });
+                    return flowCharString;
+                } catch (e) {
+                    if (e == 'No Cluster')
                         return 'Error'
-                    else if (e == 'Play Error'){
+                    else if (e == 'Play Error') {
                         return 'Play Error'
                     }
+                }
+            } else {
+                return null;
             }
-        } else {
-            return null;
-        }
-    },
+        },
 
         FindNumber: function (dict, operatorID) {
             for (var v in dict) {

@@ -1,76 +1,42 @@
 ####
 Operator name is: Start
-Class: Start
-do -> op0
+Class: undefined
+do -> op2
 ####
 ####
-Operator name is: op0
+Operator name is: op2
 Class: logic
-Play: welcomeMsg.wav
-Wait_time: 12
-if 1 do -> op5
-if 2 do -> op4
-if 3 do -> op6
-if 4 do -> op7
+if 1 do -> op4
+if 2 do -> op8
 ####
 ####
 Operator name is: op4
 Class: getInput
-Say: "What is your name?"
-Get userName -> Q0
+Say: "What is Your Name?"
+Get UserName -> Q0
 ####
 ####
 Operator name is: Q0
-Say: "How much is your debt?"
-Get userDebt -> Q1
+Say: "What is Your ID?"
+Get UserID -> Q1
 ####
 ####
 Operator name is: Q1
-Say: "How many payments do you want?"
-Get numOfPay -> Q2
+Say: "What is Your Old Address?"
+Get OldAdd -> Q2
 ####
 ####
 Operator name is: Q2
 Class: getInput
-Say: "What is your credit card number?"
-Get creditCard -> op13
+Say: "What is Your New Address?"
+Get NewAdd -> op5
 ####
 ####
 Operator name is: op5
-Class: getInput
-Say: "What is your name?"
-Get UserName -> Q3
-####
-####
-Operator name is: Q3
-Say: "How much is your debt water?"
-Get UserDebt -> Q4
-####
-####
-Operator name is: Q4
-Class: getInput
-Say: "What is your credit card number?"
-Get CreditCard -> op13
-####
-####
-Operator name is: op6
-Class: getInput
-Say: "Please Enter your ID"
-Get UserID -> op11
-####
-####
-Operator name is: op7
 Class: disconnect
-Say: "Bye"
 ####
 ####
-Operator name is: op11
+Operator name is: op8
 Class: route
-Say: "Please Waiting for human agent"
-Route_to: 1-800-400-400
-####
-####
-Operator name is: op13
-Class: disconnect
-Say: "Thank you for calling"
+Route_to: 
 ####
