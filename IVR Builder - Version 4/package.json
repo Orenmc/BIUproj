@@ -23,7 +23,7 @@
     "grunt-lintspaces": "^0.8.3",
     "grunt-pleeease": "^1.4.0",
     "grunt-sass": "^3.0.1",
-    "node-sass": "^4.9.3"
+    "node-sass": "^4.13.1"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
