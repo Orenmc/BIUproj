@@ -19,7 +19,7 @@
   "license": "MIT",
   "homepage": "https://colorlib.com/polygon/sufee/index.html",
   "devDependencies": {
-    "grunt": "^1.0.3",
+    "grunt": "^1.5.2",
     "grunt-lintspaces": "^0.8.3",
     "grunt-pleeease": "^1.4.0",
     "grunt-sass": "^3.0.1",
